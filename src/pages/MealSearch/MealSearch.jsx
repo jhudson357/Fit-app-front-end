@@ -1,11 +1,14 @@
 import { useState } from "react"
 import styles from './MealSearch.module.css'
+import * as mealService from '../../services/mealService'
 
 const MealSearch = () => {
   
   const [formData, setFormData] = useState({
     mealQuery: ''
   })
+
+  const [results, setResults] = useState([])
 
   const handleChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -14,7 +17,9 @@ const MealSearch = () => {
   const handleSubmit = async evt => {
     evt.preventDefault()
     try {
-      // api call
+      const resultData = await mealService.search(formData)
+      console.log(results)
+      setResults(resultData)
     } catch (err) {
       console.log(err) 
     }
