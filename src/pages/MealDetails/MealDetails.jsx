@@ -22,7 +22,9 @@ const MealDetails = (props) => {
   return (
     <>
       <h2>meal details (remove once i figure out why it doesnt load the first time)</h2>
-      {/* <img src={mealDetails.recipe.image} alt="" />
+      {mealDetails.recipe ?
+      <>
+      <img src={mealDetails.recipe.image} alt="" />
       <h2>{mealDetails.recipe.label}</h2>
       <h4>Cuisine Type: {mealDetails.recipe.cuisineType}</h4>
       <p>Calories: {Math.round(mealDetails.recipe.calories)}</p>
@@ -35,7 +37,11 @@ const MealDetails = (props) => {
           )}
 
       </ul>
-      <a href={mealDetails.recipe.url} target="_blank" rel="noopener noreferrer">Instructions</a> */}
+      <a href={mealDetails.recipe.url} target="_blank" rel="noopener noreferrer">Instructions</a>
+      </>
+      :
+      <h2>Loading</h2>
+      }
     </>
   )
 }
