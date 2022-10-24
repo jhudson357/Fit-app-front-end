@@ -9,6 +9,7 @@ import Landing from './pages/Landing/Landing'
 import Profiles from './pages/Profiles/Profiles'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 import MealSearch from './pages/MealSearch/MealSearch'
+import MealDetails from './pages/MealDetails/MealDetails'
 
 // components
 import NavBar from './components/NavBar/NavBar'
@@ -66,6 +67,11 @@ const App = () => {
         <Route
           path="/meal-search"
           element={<MealSearch />}
+        />
+
+        <Route
+          path="/meals/:mealId"
+          element={<MealDetails />}
         />
       </Routes>
     </>
