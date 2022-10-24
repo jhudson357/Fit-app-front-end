@@ -8,3 +8,12 @@ export async function search(mealQuery) {
   })
   return res.json()
 }
+
+export async function getMealDetails(mealId) {
+  console.log('hello')
+  console.log(`${BASE_URL}/getMealDetails/${mealId}`)
+  console.log('MEAL ID', mealId)
+  const res = await fetch(`${BASE_URL}/getMealDetails/${mealId}`)
+  console.log(res, 'RES')
+  return res.json()
+}
