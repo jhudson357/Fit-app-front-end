@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import GoalCard from "../../components/GoalCard/GoalCard";
-import DayList from "../../components/DayList/DayList";
+import Days from "../../components/Days/Days";
 import NewGoal from "../../components/NewGoal/NewGoal";
 import Goals from "../../components/Goals/Goals";
 
@@ -24,11 +24,13 @@ const ProfileView = (props) => {
     fetchProfile()
   }, [id])
 
+
+
   return (  
     <>
       <h1>{profile.name}'s goals and weekly plan:</h1>
       <h3>I want to:</h3>
-      <DayList days={props.days}/>
+      <Days days={props.days}/>
 
       <h3>Goals:</h3>
       <Goals goals={profile.goals} />
