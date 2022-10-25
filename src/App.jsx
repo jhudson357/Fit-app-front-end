@@ -11,6 +11,7 @@ import ChangePassword from './pages/ChangePassword/ChangePassword'
 import MealSearch from './pages/MealSearch/MealSearch'
 import MealDetails from './pages/MealDetails/MealDetails'
 import ExerciseList from './pages/ExerciseList/ExerciseList'
+import ExerciseDetails from './pages/ExerciseDetails/ExerciseDetails'
 
 // components
 import NavBar from './components/NavBar/NavBar'
@@ -75,8 +76,12 @@ const App = () => {
         />
         <Route
           path='/exercises'
+          element= {<ExerciseList />}
+        />
+        <Route
+          path='/exercises/:id'
           element= {
-            <ExerciseList />
+            <ExerciseDetails />
           }
         />
       </Routes>
