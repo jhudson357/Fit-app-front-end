@@ -1,5 +1,6 @@
 import * as exerciseService from '../../services/exerciseService'
 import { useState, useEffect } from 'react'
+import ExerciseCard from '../../components/ExerciseCard/ExerciseCard'
 
 const ExerciseList = () => {
   const [exercises, setExercises] = useState([])
@@ -18,13 +19,11 @@ const ExerciseList = () => {
     <>
       <h2>Exercises</h2>
       {exercises.length ?
-        <ul>
+        <>
           {exercises.map(exercise =>
-            <li key={exercise._id}>
-              {exercise.name}
-            </li>
+            <ExerciseCard key={exercise._id} exercise={exercise} />
           )}
-        </ul>
+        </>
         :
         <>
           Loading...
