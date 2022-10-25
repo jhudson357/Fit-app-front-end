@@ -26,16 +26,14 @@ const ExerciseDetails = (props) => {
       <h3>Muscle: {exercise.muscle}</h3>
       <p>Equipment: {exercise.equipment}</p>
       <p>Reps: {exercise.reps}</p>
-      <p>REMOVE - exercise.author: {exercise.author}</p>
-      <p>REMOVE - Logged In User ID: {props.user.profile}</p>
-      
-      {/* MIGHT NEED TO BE exercise.author._id --> if so, need to popualte author details on the backend exercise controller fxn */}
+
       {exercise.author === props.user.profile && 
         <>
           <Link to={`/exercises/${id}/edit`} state={exercise}>Edit</Link>
-          <button>Delete</button>
+          <button onClick={() => props.handleDeleteExercise(id)}>Delete</button>
         </>
       }
+      <Link to={'/exercises'}>All Exercises</Link>
     </>
   )
 }
