@@ -10,6 +10,7 @@ import Profiles from './pages/Profiles/Profiles'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 import MealSearch from './pages/MealSearch/MealSearch'
 import MealDetails from './pages/MealDetails/MealDetails'
+import ExerciseList from './pages/ExerciseList/ExerciseList'
 
 // components
 import NavBar from './components/NavBar/NavBar'
@@ -68,10 +69,15 @@ const App = () => {
           path="/meal-search"
           element={<MealSearch />}
         />
-
         <Route
           path="/meals/:mealId"
           element={<MealDetails />}
+        />
+        <Route
+          path='/exercises'
+          element= {
+            <ExerciseList />
+          }
         />
       </Routes>
     </>
