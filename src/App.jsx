@@ -23,6 +23,7 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 // services
 import * as authService from './services/authService'
 import * as exerciseService from './services/exerciseService'
+import * as daysService from './services/dayService'
 
 // styles
 import './App.css'
@@ -31,6 +32,8 @@ const App = () => {
   const navigate = useNavigate()
   const [user, setUser] = useState(authService.getUser())
   const [exercises, setExercises] = useState([])
+  const [days, setDays] = useState([])
+
 
   const handleLogout = () => {
     authService.logout()
@@ -73,6 +76,18 @@ const App = () => {
     fetchAllExercises()
   }, [])
 
+  useEffect(() => {
+    const fetchAllDays = async () => {
+      const daysData = await daysService.index()
+      console.log('Exercise Data:', daysData)
+      setDays(daysData)
+      console.log(days, 'Days')
+    }
+    fetchAllDays()
+  }, [])
+
+
+
   return (
     <>
       <NavBar user={user} handleLogout={handleLogout} />
@@ -90,7 +105,7 @@ const App = () => {
           path="/profiles"
           element={
             <ProtectedRoute user={user}>
-              <Profiles />
+              <Profiles user={user}/>
             </ProtectedRoute>
           }
         />
@@ -98,7 +113,7 @@ const App = () => {
           path="/profiles/:id"
           element={
             <ProtectedRoute user={user}>
-              <ProfileView user/>
+              <ProfileView user={user} days={days}/>
             </ProtectedRoute>
           }
         />
