@@ -14,6 +14,7 @@ import ExerciseList from './pages/ExerciseList/ExerciseList'
 import ExerciseDetails from './pages/ExerciseDetails/ExerciseDetails'
 import ProfileView from './pages/ProfileView/ProfileView'
 import NewExercise from './pages/NewExercise/NewExercise'
+import EditExercise from './pages/EditExercise/EditExercise'
 
 // components
 import NavBar from './components/NavBar/NavBar'
@@ -44,6 +45,15 @@ const App = () => {
   const handleAddExercise = async (exerciseData) => {
     const newExercise = await exerciseService.create(exerciseData)
     setExercises([newExercise, ...exercises])
+    navigate('/exercises')
+  }
+
+  const handleUpdateExercise = async (exerciseData) => {
+    const updatedExercise = await exerciseService.update(exerciseData)
+    const updatedExercisesData = exercises.map(exercise => {
+      return exerciseData._id === exercise._id ? updatedExercise : exercise
+    })
+    setExercises(updatedExercisesData)
     navigate('/exercises')
   }
 
@@ -109,7 +119,7 @@ const App = () => {
         <Route
           path='/exercises/:id'
           element= {
-            <ExerciseDetails />
+            <ExerciseDetails user={user}/>
           }
         />
         <Route 
@@ -120,6 +130,15 @@ const App = () => {
             </ProtectedRoute>
           }
         />
+        <Route 
+          path='/exercises/:id/edit'
+          element={
+            <ProtectedRoute user={user}>
+              <EditExercise handleUpdateExercise={handleUpdateExercise} />
+            </ProtectedRoute>  
+          }
+        />
+
       </Routes>
     </>
   )
