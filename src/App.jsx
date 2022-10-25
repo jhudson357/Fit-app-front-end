@@ -57,6 +57,12 @@ const App = () => {
     navigate('/exercises')
   }
 
+  const handleDeleteExercise = async (id) => {
+    const deletedExercise = await exerciseService.deleteExercise(id)
+    setExercises(exercises.filter(exercise => exercise._id !== deletedExercise._id))
+    navigate('/exercises')
+  }
+
   useEffect(() => {
     const fetchAllExercises = async () => {
       const exercisesData = await exerciseService.index()
@@ -119,7 +125,7 @@ const App = () => {
         <Route
           path='/exercises/:id'
           element= {
-            <ExerciseDetails user={user}/>
+            <ExerciseDetails user={user} handleDeleteExercise={handleDeleteExercise}/>
           }
         />
         <Route 
@@ -138,7 +144,6 @@ const App = () => {
             </ProtectedRoute>  
           }
         />
-
       </Routes>
     </>
   )
