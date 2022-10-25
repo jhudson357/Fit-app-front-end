@@ -12,6 +12,7 @@ import MealSearch from './pages/MealSearch/MealSearch'
 import MealDetails from './pages/MealDetails/MealDetails'
 import ExerciseList from './pages/ExerciseList/ExerciseList'
 import ExerciseDetails from './pages/ExerciseDetails/ExerciseDetails'
+import ProfileView from './pages/ProfileView/ProfileView'
 import NewExercise from './pages/NewExercise/NewExercise'
 
 // components
@@ -74,6 +75,14 @@ const App = () => {
           element={
             <ProtectedRoute user={user}>
               <Profiles />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/profiles/:id"
+          element={
+            <ProtectedRoute user={user}>
+              <ProfileView user/>
             </ProtectedRoute>
           }
         />
