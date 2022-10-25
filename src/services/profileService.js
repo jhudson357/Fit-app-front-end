@@ -20,4 +20,31 @@ async function addPhoto(photoData, profileId) {
   return await res.json()
 }
 
-export { getAllProfiles, addPhoto }
+const getOneProfile = async (id) => {
+  try {
+    const res = await fetch(`${BASE_URL}/${id}`, {
+      headers: { 'Authorization': `Bearer ${tokenService.getToken()}` },
+    })
+    return await res.json()
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const createGoal = async (id, goalData) => {
+  try {
+    const res = await fetch(`${BASE_URL}/${id}/goals`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${tokenService.getToken()}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(goalData)
+    })
+    return res.json()
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export { getAllProfiles, addPhoto, getOneProfile, createGoal, }
