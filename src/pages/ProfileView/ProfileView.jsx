@@ -5,7 +5,7 @@ import DayList from "../../components/DayList/DayList";
 
 import * as profileService from '../../services/profileService'
 
-const ProfileView = () => {
+const ProfileView = (props) => {
   const { id } = useParams()
   const [profile, setProfile] = useState({})
 
@@ -26,7 +26,7 @@ const ProfileView = () => {
     <>
       <h1>{profile.name}'s goals and weekly plan:</h1>
       <h3>I want to:</h3>
-      <DayList />
+      <DayList days={props.days}/>
 
     </>
   );
