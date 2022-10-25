@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import GoalCard from "../../components/GoalCard/GoalCard";
 import DayList from "../../components/DayList/DayList";
+import NewGoal from "../../components/NewGoal/NewGoal";
+import Goals from "../../components/Goals/Goals";
 
 import * as profileService from '../../services/profileService'
 
@@ -11,7 +13,7 @@ const ProfileView = (props) => {
 
   const handleAddGoal = async (goalData) => {
     const newGoal = await profileService.createGoal(id, goalData)
-    setProfile({})
+    setProfile({...profile, goals: [...profile.goals, newGoal]})
   }
 
   useEffect(() => {
@@ -28,6 +30,9 @@ const ProfileView = (props) => {
       <h3>I want to:</h3>
       <DayList days={props.days}/>
 
+      <h3>Goals:</h3>
+      <Goals goals={profile.goals} />
+      <NewGoal handleAddGoal={handleAddGoal} />
     </>
   );
 }
