@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
 
 import * as exerciseService from '../../services/exerciseService'
 
-const ExerciseDetails = () => {
+const ExerciseDetails = (props) => {
   const { id } = useParams()
   const [exercise, setExercise] = useState(null)
 
@@ -14,6 +14,7 @@ const ExerciseDetails = () => {
       console.log('EXERCISE DATA', exerciseData)
       console.log('ID', id)
       console.log('EXERCISE', exercise)
+      console.log('USER', props.user.profile)
     }
     fetchExercise()
   }, [id])
@@ -25,6 +26,16 @@ const ExerciseDetails = () => {
       <h3>Muscle: {exercise.muscle}</h3>
       <p>Equipment: {exercise.equipment}</p>
       <p>Reps: {exercise.reps}</p>
+      <p>REMOVE - exercise.author: {exercise.author}</p>
+      <p>REMOVE - Logged In User ID: {props.user.profile}</p>
+      
+      {/* MIGHT NEED TO BE exercise.author._id --> if so, need to popualte author details on the backend exercise controller fxn */}
+      {exercise.author === props.user.profile && 
+        <>
+          <Link to={`/exercises/${id}/edit`} state={exercise}>Edit</Link>
+          <button>Delete</button>
+        </>
+      }
     </>
   )
 }
