@@ -1,6 +1,6 @@
 // npm modules
-import { useState } from 'react'
-import { Routes, Route, useNavigate, Navigate } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 
 // page components
 import Signup from './pages/Signup/Signup'
@@ -12,6 +12,7 @@ import MealSearch from './pages/MealSearch/MealSearch'
 import MealDetails from './pages/MealDetails/MealDetails'
 import ExerciseList from './pages/ExerciseList/ExerciseList'
 import ExerciseDetails from './pages/ExerciseDetails/ExerciseDetails'
+import NewExercise from './pages/NewExercise/NewExercise'
 
 // components
 import NavBar from './components/NavBar/NavBar'
@@ -19,13 +20,15 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 
 // services
 import * as authService from './services/authService'
+import * as exerciseService from './services/exerciseService'
 
 // styles
 import './App.css'
 
 const App = () => {
-  const [user, setUser] = useState(authService.getUser())
   const navigate = useNavigate()
+  const [user, setUser] = useState(authService.getUser())
+  const [exercises, setExercises] = useState([])
 
   const handleLogout = () => {
     authService.logout()
@@ -36,6 +39,22 @@ const App = () => {
   const handleSignupOrLogin = () => {
     setUser(authService.getUser())
   }
+
+  const handleAddExercise = async (exerciseData) => {
+    const newExercise = await exerciseService.create(exerciseData)
+    setExercises([newExercise, ...exercises])
+    navigate('/exercises')
+  }
+
+  useEffect(() => {
+    const fetchAllExercises = async () => {
+      const exercisesData = await exerciseService.index()
+      console.log('Exercise Data:', exercisesData)
+      setExercises(exercisesData)
+      console.log(exercises, 'EXERCISES')
+    }
+    fetchAllExercises()
+  }, [])
 
   return (
     <>
@@ -76,12 +95,20 @@ const App = () => {
         />
         <Route
           path='/exercises'
-          element= {<ExerciseList />}
+          element= {<ExerciseList exercises={exercises}/>}
         />
         <Route
           path='/exercises/:id'
           element= {
             <ExerciseDetails />
+          }
+        />
+        <Route 
+          path='/exercises/new'
+          element= {
+            <ProtectedRoute user={user}>
+              <NewExercise handleAddExercise={handleAddExercise}/>
+            </ProtectedRoute>
           }
         />
       </Routes>

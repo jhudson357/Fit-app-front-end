@@ -22,9 +22,9 @@ const ExerciseDetails = () => {
   return (
     <>
       <h2>{exercise.name.toUpperCase()}</h2>
-      <h3>{exercise.muscle}</h3>
-      <p>{exercise.equipment}</p>
-      <p>{exercise.reps}</p>
+      <h3>Muscle: {exercise.muscle}</h3>
+      <p>Equipment: {exercise.equipment}</p>
+      <p>Reps: {exercise.reps}</p>
     </>
   )
 }
