@@ -8,6 +8,11 @@ const ProfileView = () => {
   const { id } = useParams()
   const [profile, setProfile] = useState({})
 
+  const handleAddGoal = async (goalData) => {
+    const newGoal = await profileService.createGoal(id, goalData)
+    setProfile({})
+  }
+
   useEffect(() => {
     const fetchProfile = async () => {
       const profileData = await profileService.getOneProfile(id)
@@ -19,6 +24,8 @@ const ProfileView = () => {
   return (  
     <>
       <h1>{profile.name}'s goals and weekly plan:</h1>
+      <h3>I want to:</h3>
+
     </>
   );
 }

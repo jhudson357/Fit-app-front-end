@@ -31,4 +31,20 @@ const getOneProfile = async (id) => {
   }
 }
 
-export { getAllProfiles, addPhoto, getOneProfile, }
+const createGoal = async (id, goalData) => {
+  try {
+    const res = await fetch(`${BASE_URL}/${id}/goals`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${tokenService.getToken()}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(goalData)
+    })
+    return res.json()
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export { getAllProfiles, addPhoto, getOneProfile, createGoal, }
