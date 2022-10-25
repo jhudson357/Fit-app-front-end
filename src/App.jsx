@@ -18,6 +18,7 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 
 // services
 import * as authService from './services/authService'
+// import * as exerciseService from './services/exerciseService'
 
 // styles
 import './App.css'
