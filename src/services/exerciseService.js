@@ -37,7 +37,6 @@ const create = async (exerciseData) => {
 }
 
 const update = async (exerciseData) => {
-  console.log('update running!!!')
   try {
     const res = await fetch(`${BASE_URL}/${exerciseData._id}`, {
       method: 'PUT',
@@ -53,10 +52,25 @@ const update = async (exerciseData) => {
   }
 }
 
+const deleteExercise = async (id) => {
+  try {
+    const res = await fetch(`${BASE_URL}/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${tokenService.getToken()}`,
+      }
+    })
+    return res.json()
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export {
   index,
   show,
   create,
   update,
+  deleteExercise,
 }
 
