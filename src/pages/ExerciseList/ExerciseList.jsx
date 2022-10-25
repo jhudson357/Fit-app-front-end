@@ -7,9 +7,9 @@ const ExerciseList = () => {
 
   useEffect(() => {
     const fetchAllExercises = async () => {
-      const exerciseData = await exerciseService.index()
-      console.log('Exercise Data:', exerciseData)
-      setExercises(exerciseData)
+      const exercisesData = await exerciseService.index()
+      console.log('Exercise Data:', exercisesData)
+      setExercises(exercisesData)
       console.log(exercises, 'EXERCISES')
     }
     fetchAllExercises()
