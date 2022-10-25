@@ -41,7 +41,7 @@ const createGoal = async (id, goalData) => {
       },
       body: JSON.stringify(goalData)
     })
-    return res.json()
+    return await res.json()
   } catch (error) {
     console.log(error)
   }
