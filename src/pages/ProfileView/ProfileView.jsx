@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import GoalCard from "../../components/GoalCard/GoalCard";
+import DayList from "../../components/DayList/DayList";
 
 import * as profileService from '../../services/profileService'
 
@@ -25,6 +26,7 @@ const ProfileView = () => {
     <>
       <h1>{profile.name}'s goals and weekly plan:</h1>
       <h3>I want to:</h3>
+      <DayList />
 
     </>
   );
