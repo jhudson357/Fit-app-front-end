@@ -47,4 +47,18 @@ const createGoal = async (id, goalData) => {
   }
 }
 
-export { getAllProfiles, addPhoto, getOneProfile, createGoal, }
+const deleteGoal = async (profileId, goalId) => {
+  try {
+    const res = await fetch(`${BASE_URL}/${profileId}/goals/${goalId}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${tokenService.getToken()}`
+      }
+    })
+    return res.json()
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export { getAllProfiles, addPhoto, getOneProfile, createGoal, deleteGoal, }

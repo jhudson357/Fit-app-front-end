@@ -12,15 +12,35 @@ const Goals = (props) => {
     }
   }
 
+  const handleDeleteComment = async (profileId, goalId) => {
+    try {
+      await profileService.deleteGoal(profileId, goalId)
+    } catch (err) {
+      console.log(err)
+    }
+
+  }
+
   if (!props.goals) return <h3>no goals yet</h3>
   return (  
     <>
       {props.goals.map((goal, idx) => (
         <div key={idx}>
-          <GoalCard  goal={goal} />
+          <GoalCard 
+            goal={goal} 
+            handleDeleteComment={handleDeleteComment} 
+            id={props.id}
+            profile={props.profile} 
+            setProfile={props.setProfile}  
+          />
         </div>
       ))}
-      <NewGoal profile={props.profile} setProfile={props.setProfile} id={props.id} handleAddGoal={handleAddGoal}/>
+      <NewGoal 
+        profile={props.profile} 
+        setProfile={props.setProfile} 
+        id={props.id} 
+        handleAddGoal={handleAddGoal} 
+      />
     </>
   );
 }
