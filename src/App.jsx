@@ -105,7 +105,7 @@ const App = () => {
           path="/profiles"
           element={
             <ProtectedRoute user={user}>
-              <Profiles user={user}/>
+              <Profiles user={user} days={days}/>
             </ProtectedRoute>
           }
         />
@@ -113,7 +113,7 @@ const App = () => {
           path="/profiles/:id"
           element={
             <ProtectedRoute user={user}>
-              <ProfileView user={user} days={days}/>
+              <ProfileView user={user}/>
             </ProtectedRoute>
           }
         />
