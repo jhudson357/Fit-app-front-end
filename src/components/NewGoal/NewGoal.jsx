@@ -1,6 +1,5 @@
 import { useState } from "react";
 
-
 const NewGoal = (props) => {
   const [form, setForm] = useState({content: ''})
 
@@ -11,6 +10,7 @@ const NewGoal = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     props.handleAddGoal(form)
+    props.setProfile({...props.profile, goals: [...props.profile.goals, form]})
     setForm({content: ''})
   }
 
@@ -22,7 +22,7 @@ const NewGoal = (props) => {
         type="text"
         name="content"
         id="text-input"
-        value={form.text}
+        value={form.content}
         placeholder="Add a Comment"
         onChange={handleChange}
       />
