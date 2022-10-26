@@ -61,4 +61,20 @@ const deleteGoal = async (profileId, goalId) => {
   }
 }
 
-export { getAllProfiles, addPhoto, getOneProfile, createGoal, deleteGoal, }
+const updateGoal = async (profileId, goalId, goalData) => {
+  try {
+    const res = await fetch(`${BASE_URL}/${profileId}/goals/${goalId}`, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `Bearer ${tokenService.getToken()}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(goalData)
+    })
+    return res.json()
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export { getAllProfiles, addPhoto, getOneProfile, createGoal, deleteGoal, updateGoal, }
