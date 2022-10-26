@@ -59,10 +59,10 @@ const ProfileView = (props) => {
       </form>
       {profile.exercises ?
         <>
-          {profile.exercises.map(exercise => 
-            <>
+          {profile.exercises.map((exercise, idx) => 
+            <div key={idx}>
               {exercise.name}
-            </>
+            </div>
           )}
         </>
         :
