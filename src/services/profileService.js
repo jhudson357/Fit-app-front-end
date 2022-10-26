@@ -96,4 +96,18 @@ const updateGoal = async (profileId, goalId, goalData) => {
   }
 }
 
-export { getAllProfiles, addPhoto, getOneProfile, createGoal, deleteGoal, addExercise, updateGoal, }
+const deleteExercise = async (profileId, exerciseId) => {
+  try {
+    const res = await fetch(`${BASE_URL}/${profileId}/exercises/${exerciseId}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${tokenService.getToken()}`,
+      }
+    })
+    return res.json()
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export { getAllProfiles, addPhoto, getOneProfile, createGoal, deleteGoal, addExercise, updateGoal, deleteExercise, }
