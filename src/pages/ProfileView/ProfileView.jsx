@@ -17,7 +17,7 @@ const ProfileView = (props) => {
       setProfile(profileData)
     }
     fetchProfile()
-  }, [id])
+  }, [profile.exercises])
 
   const handleChange = ({ target }) => {
     setForm({...form, [target.name]: target.value })
@@ -36,6 +36,8 @@ const ProfileView = (props) => {
     handlePushExercise(form)
   }
 
+  console.log('PROFILE', profile)
+  // console.log('PROFILE EXERCISES', profile.exercises[0].name)
   return (  
     <>
       <h1>{profile.name}'s goals and weekly plan:</h1>
@@ -45,6 +47,8 @@ const ProfileView = (props) => {
       <h3>I want to:</h3>
       <h3>My goals:</h3>
       <Goals goals={profile.goals} profile={profile} setProfile={setProfile} id={id} />
+
+      <h3>Add Exercises</h3>
       <form onSubmit={handleSubmit} onChange={handleChange}>
         <select name="id" id=""  onChange={handleChange}>
           {props.exercises.map((exercise) => 
@@ -53,6 +57,14 @@ const ProfileView = (props) => {
         </select>
         <button type="submit">submit</button>
       </form>
+      <>
+        {profile.exercises.map(exercise => 
+          <>
+            {exercise.name}
+          </>
+        )}
+      </>
+
     </>
   );
 }
