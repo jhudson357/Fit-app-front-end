@@ -12,14 +12,6 @@ const ProfileView = (props) => {
     id: '',
   })
 
-  useEffect(() => {
-    const fetchProfile = async () => {
-      const profileData = await profileService.getOneProfile(id)
-      setProfile(profileData)
-    }
-    fetchProfile()
-  }, [profile.exercises])
-
   const handleChange = ({ target }) => {
     setForm({...form, [target.name]: target.value })
   }
@@ -32,19 +24,33 @@ const ProfileView = (props) => {
     }
   }
 
+  const handleDeleteExercise = async (profileId, exerciseId) => {
+    try {
+      const deletedExercise = await profileService.deleteExercise(profileId, exerciseId)
+      setProfile(profile.exercises.filter(exercise => exercise._id !== deletedExercise._id))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   const handleSubmit = evt => {
     evt.preventDefault()
     handlePushExercise(form)
   }
 
-  console.log('PROFILE', profile)
+  useEffect(() => {
+    const fetchProfile = async () => {
+      const profileData = await profileService.getOneProfile(id)
+      setProfile(profileData)
+    }
+    fetchProfile()
+  }, [profile.exercises])
+
+  console.log('PROFILE ID', profile._id)
   // console.log('PROFILE EXERCISES', profile.exercises[0].name)
   return (  
     <>
       <h1>{profile.name}'s goals and weekly plan:</h1>
-      {/* {profile.exercises.map((exercise) => 
-        
-      )} */}
       <h3>My goals:</h3>
       <Goals goals={profile.goals} profile={profile} setProfile={setProfile} id={id} />
 
@@ -61,7 +67,11 @@ const ProfileView = (props) => {
         <>
           {profile.exercises.map((exercise, idx) => 
             <div key={idx}>
-              <ProfileExerciseCard exercise={exercise}/> 
+              <ProfileExerciseCard
+                exercise={exercise}
+                handleDeleteExercise={handleDeleteExercise}
+                profileId={profile._id}
+              /> 
             </div>
           )}
         </>
