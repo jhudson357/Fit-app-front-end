@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Goals from "../../components/Goals/Goals";
+import ProfileExerciseCard from "../../components/ProfileExerciseCard/ProfileExerciseCard";
 
 import * as profileService from '../../services/profileService'
 
@@ -44,7 +45,6 @@ const ProfileView = (props) => {
       {/* {profile.exercises.map((exercise) => 
         
       )} */}
-      <h3>I want to:</h3>
       <h3>My goals:</h3>
       <Goals goals={profile.goals} profile={profile} setProfile={setProfile} id={id} />
 
@@ -61,7 +61,7 @@ const ProfileView = (props) => {
         <>
           {profile.exercises.map((exercise, idx) => 
             <div key={idx}>
-              {exercise.name}
+              <ProfileExerciseCard exercise={exercise}/> 
             </div>
           )}
         </>
