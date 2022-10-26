@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+
 const NewGoal = (props) => {
   const [form, setForm] = useState({content: ''})
 
@@ -23,7 +24,7 @@ const NewGoal = (props) => {
         name="content"
         id="text-input"
         value={form.content}
-        placeholder="Add a Comment"
+        placeholder="Add a Goal"
         onChange={handleChange}
       />
       <button type="submit">Add Goal</button>
