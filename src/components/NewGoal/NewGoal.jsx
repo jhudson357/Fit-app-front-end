@@ -1,8 +1,9 @@
 import { useState } from "react";
 
+const currentDate = new Date()
 
 const NewGoal = (props) => {
-  const [form, setForm] = useState({content: ''})
+  const [form, setForm] = useState({content: '', date: currentDate})
 
   const handleChange = ({ target }) => {
     setForm({ ...form, [target.name]: target.value })
@@ -27,6 +28,7 @@ const NewGoal = (props) => {
         placeholder="Add a Goal"
         onChange={handleChange}
       />
+      <input type="date" name='date' value={form.date} onChange={handleChange}/>
       <button type="submit">Add Goal</button>
     </form>
   );
