@@ -76,15 +76,15 @@ const App = () => {
     fetchAllExercises()
   }, [])
 
-  useEffect(() => {
-    const fetchAllDays = async () => {
-      const daysData = await daysService.index()
-      console.log('Exercise Data:', daysData)
-      setDays(daysData)
-      console.log(days, 'Days')
-    }
-    fetchAllDays()
-  }, [])
+  // useEffect(() => {
+  //   const fetchAllDays = async () => {
+  //     const daysData = await daysService.index()
+  //     console.log('Exercise Data:', daysData)
+  //     setDays(daysData)
+  //     console.log(days, 'Days')
+  //   }
+  //   fetchAllDays()
+  // }, [])
 
 
 
@@ -105,7 +105,7 @@ const App = () => {
           path="/profiles"
           element={
             <ProtectedRoute user={user}>
-              <Profiles user={user}/>
+              <Profiles user={user} exersices={exercises}/>
             </ProtectedRoute>
           }
         />
@@ -113,7 +113,7 @@ const App = () => {
           path="/profiles/:id"
           element={
             <ProtectedRoute user={user}>
-              <ProfileView user={user} days={days}/>
+              <ProfileView user={user} exercises={exercises}/>
             </ProtectedRoute>
           }
         />

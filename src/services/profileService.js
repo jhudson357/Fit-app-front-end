@@ -52,7 +52,8 @@ const deleteGoal = async (profileId, goalId) => {
     const res = await fetch(`${BASE_URL}/${profileId}/goals/${goalId}`, {
       method: 'DELETE',
       headers: {
-        'Authorization': `Bearer ${tokenService.getToken()}`
+        'Authorization': `Bearer ${tokenService.getToken()}`,
+        
       }
     })
     return res.json()
@@ -61,4 +62,22 @@ const deleteGoal = async (profileId, goalId) => {
   }
 }
 
-export { getAllProfiles, addPhoto, getOneProfile, createGoal, deleteGoal, }
+const addExercise = async (profileId, pushData) => {
+  try {
+    console.log(pushData)
+    console.log(profileId)
+    const res = await fetch (`${BASE_URL}/${profileId}/exercises`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${tokenService.getToken()}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(pushData)
+    })
+    return res.json()
+  } catch (error) {
+    
+  }
+}
+
+export { getAllProfiles, addPhoto, getOneProfile, createGoal, deleteGoal, addExercise }
