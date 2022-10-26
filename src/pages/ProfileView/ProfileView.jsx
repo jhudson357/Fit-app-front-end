@@ -43,7 +43,7 @@ const ProfileView = (props) => {
         
       )} */}
       <h3>I want to:</h3>
-      <h3>Goals:</h3>
+      <h3>My goals:</h3>
       <Goals goals={profile.goals} profile={profile} setProfile={setProfile} id={id} />
       <form onSubmit={handleSubmit} onChange={handleChange}>
         <select name="id" id=""  onChange={handleChange}>
