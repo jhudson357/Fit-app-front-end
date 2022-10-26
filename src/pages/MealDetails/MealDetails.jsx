@@ -3,7 +3,12 @@ import { useParams } from "react-router-dom"
 import * as mealService from '../../services/mealService'
 
 const MealDetails = (props) => {
-  const [mealDetails, setMealDetails] = useState({})
+  const [mealDetails, setMealDetails] = useState({
+    // label: '',
+    // description: '',
+    // calories: 0,
+    // image: ''
+  })
   const {mealId} = useParams()
 
   useEffect(() => {
@@ -18,6 +23,21 @@ const MealDetails = (props) => {
     fetchMealDetails()
   }, [mealId])
 
+  // const mealData = {
+  //   label: mealDetails.recipe.label,
+  //   description: mealDetails.recipe.description,
+  //   calories: mealDetails.recipe.calories,
+  //   image: mealDetails.recipe.image
+  // }
+
+  const handleAddMeal = async () => {
+    console.log('meal details', mealDetails)
+    await mealService.addMeal(mealDetails)
+    // post request to meals database in the backend
+  }
+  
+  console.log('meal deats outside of fxn', mealDetails)
+  // console.log('MEALDETAILS RECIPE', mealDetails.recipe.label)
 
   return (
     <>
@@ -38,6 +58,16 @@ const MealDetails = (props) => {
 
       </ul>
       <a href={mealDetails.recipe.url} target="_blank" rel="noopener noreferrer">Instructions</a>
+      
+      {props.user ?  
+        <>
+          <button onClick={() => handleAddMeal()}>Save Meal to Profile</button>
+          {/* <button >Save Meal to Profile</button> */}
+        </>
+        :
+        <>TEST</>
+      }
+
       </>
       :
       <h2>Loading</h2>

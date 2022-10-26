@@ -131,7 +131,7 @@ const App = () => {
         />
         <Route
           path="/meals/:mealId"
-          element={<MealDetails />}
+          element={<MealDetails  user={user}/>}
         />
         <Route
           path='/exercises'
