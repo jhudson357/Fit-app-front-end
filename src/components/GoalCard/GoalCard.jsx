@@ -1,9 +1,10 @@
 import { useState } from "react"
 
+const currentDate = new Date()
 
 const GoalCard = (props) => {
   const [isEditing, setIsEditing] = useState(false)
-  const [form, setForm] = useState({content: ''})
+  const [form, setForm] = useState({content: '', date: currentDate})
 
 
   const handleDelete = (e) => {
@@ -19,10 +20,9 @@ const GoalCard = (props) => {
 
   const handleUpdate = (e) => {
     e.preventDefault()
-    //backend
-    // props.handleUpdateGoal(props.goal._id, form)
-    //state
+    //this conditinal prevents allowing the form to PUT an empty object to the backend when isEditing state is changed, triggering a component re-render
     if (form.content) {
+      console.log(form)
       props.handleUpdateGoal(props.goal._id, form)
       const idx = props.profile.goals.indexOf(props.goal)
       props.profile.goals[idx] = form
@@ -35,16 +35,23 @@ const GoalCard = (props) => {
   return ( 
     <>
       <form onSubmit={handleUpdate}>
-        {!isEditing ? <h2>{props.goal.content}</h2> 
+        {!isEditing ? 
+          <>
+            <h2>{props.goal.content} by {props.goal.date}</h2>
+          </>
 
-        : <textarea 
+        : <>
+          <textarea 
           name='content'
           value={form.content}
           placeholder={props.goal.content}
           onChange={handleChange}
-        ></textarea>}
+        ></textarea>
+        <input type="date" name='date' value={form.date} onChange={handleChange}/> 
+        </>}
 
-        {isEditing ? <button onClick={() => setIsEditing(false)}type='submit'>Save</button> 
+        {isEditing ?
+        <button onClick={() => setIsEditing(false)} type='submit'>Save</button> 
         : <button onClick={() => setIsEditing(true)}>Edit</button>}
       </form>
 
