@@ -57,13 +57,17 @@ const ProfileView = (props) => {
         </select>
         <button type="submit">submit</button>
       </form>
-      <>
-        {profile.exercises.map(exercise => 
-          <>
-            {exercise.name}
-          </>
-        )}
-      </>
+      {profile.exercises ?
+        <>
+          {profile.exercises.map(exercise => 
+            <>
+              {exercise.name}
+            </>
+          )}
+        </>
+        :
+        <>Loading exercises...</>
+      }
 
     </>
   );
