@@ -27,7 +27,7 @@ const ExerciseDetails = (props) => {
       <p>Equipment: {exercise.equipment}</p>
       <p>Reps: {exercise.reps}</p>
 
-      {exercise.author === props.user.profile && 
+      {exercise.author === props.user?.profile && 
         <>
           <Link to={`/exercises/${id}/edit`} state={exercise}>Edit</Link>
           <button onClick={() => props.handleDeleteExercise(id)}>Delete</button>
