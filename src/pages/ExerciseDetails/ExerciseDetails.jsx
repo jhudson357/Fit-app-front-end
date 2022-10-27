@@ -11,10 +11,6 @@ const ExerciseDetails = (props) => {
     const fetchExercise = async () => {
       const exerciseData = await exerciseService.show(id)
       setExercise(exerciseData)
-      console.log('EXERCISE DATA', exerciseData)
-      console.log('ID', id)
-      console.log('EXERCISE', exercise)
-      console.log('USER', props.user.profile)
     }
     fetchExercise()
   }, [id])

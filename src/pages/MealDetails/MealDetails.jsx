@@ -13,37 +13,20 @@ const MealDetails = (props) => {
   const {mealId} = useParams()
 
   useEffect(() => {
-    console.log('useEffect running')
-    console.log(mealId)
     const fetchMealDetails = async () => {
-      console.log('useEffect still running')
       const mealData = await mealService.getMealDetails(mealId)
-      console.log('MEAL DATA', mealData)
       setMealDetails(mealData)
     }
     fetchMealDetails()
   }, [mealId])
 
-  // const mealData = {
-  //   label: mealDetails.recipe.label,
-  //   description: mealDetails.recipe.description,
-  //   calories: mealDetails.recipe.calories,
-  //   image: mealDetails.recipe.image
-  // }
-
   const handleAddMeal = async () => {
-    console.log('meal details', mealDetails)
     const mealData =await mealService.addMeal(mealDetails)
     setMeals(mealData)
-    // post request to meals database in the backend
   }
-  
-  console.log('meal deats outside of fxn', mealDetails)
-  // console.log('MEALDETAILS RECIPE', mealDetails.recipe.label)
 
   return (
     <>
-      <h2>meal details (remove once i figure out why it doesnt load the first time)</h2>
       {mealDetails.recipe ?
       <>
       <img src={mealDetails.recipe.image} alt="" />
@@ -64,7 +47,6 @@ const MealDetails = (props) => {
       {props.user ?  
         <>
           <button onClick={() => handleAddMeal()}>Save Meal to Profile</button>
-          {/* <button >Save Meal to Profile</button> */}
         </>
         :
         <>TEST</>

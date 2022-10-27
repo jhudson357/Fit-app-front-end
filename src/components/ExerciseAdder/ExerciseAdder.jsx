@@ -11,7 +11,6 @@ const ExerciseAdder = (props) => {
   }
 
   const handleSubmit = evt => {
-    console.log(form, 'AAAAAAHHHHHH')
     evt.preventDefault()
     props.handlePushExercise(form)
     setForm({id: ''})
