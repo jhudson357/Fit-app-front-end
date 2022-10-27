@@ -1,24 +1,21 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import ExerciseAdder from "../../components/ExerciseAdder/ExerciseAdder";
 import Goals from "../../components/Goals/Goals";
 import ProfileExerciseCard from "../../components/ProfileExerciseCard/ProfileExerciseCard";
+
 
 import * as profileService from '../../services/profileService'
 
 const ProfileView = (props) => {
   const { id } = useParams()
   const [profile, setProfile] = useState({})
-  const [form, setForm] = useState({
-    id: '',
-  })
-
-  const handleChange = ({ target }) => {
-    setForm({...form, [target.name]: target.value })
-  }
 
   const handlePushExercise = async (pushData) => {
     try {
       await profileService.addExercise(profile._id, pushData)
+      const profileData = await profileService.getOneProfile(id)
+      setProfile(profileData)
     } catch (err) {
       console.log(err)
     }
@@ -33,18 +30,13 @@ const ProfileView = (props) => {
     }
   }
 
-  const handleSubmit = evt => {
-    evt.preventDefault()
-    handlePushExercise(form)
-  }
-
   useEffect(() => {
     const fetchProfile = async () => {
       const profileData = await profileService.getOneProfile(id)
       setProfile(profileData)
     }
     fetchProfile()
-  }, [profile.exercises])
+  }, [id])
 
   console.log('PROFILE ID', profile._id)
   // console.log('PROFILE EXERCISES', profile.exercises[0].name)
@@ -53,16 +45,7 @@ const ProfileView = (props) => {
       <h1>{profile.name}'s goals and weekly plan:</h1>
       <h3>My goals:</h3>
       <Goals goals={profile.goals} profile={profile} setProfile={setProfile} id={id} />
-
-      <h3>Add Exercises</h3>
-      <form onSubmit={handleSubmit} onChange={handleChange}>
-        <select name="id" id=""  onChange={handleChange}>
-          {props.exercises.map((exercise) => 
-            <option key={exercise._id} value={exercise._id}>{exercise.name}</option>
-          )}
-        </select>
-        <button type="submit">submit</button>
-      </form>
+      <ExerciseAdder profile={profile} id={id} setProfile={setProfile} exercises={props.exercises} handlePushExercise={handlePushExercise} />
       {profile.exercises ?
         <>
           {profile.exercises.map((exercise, idx) => 
