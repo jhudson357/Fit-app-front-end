@@ -6,6 +6,8 @@ const NavBar = ({ user, handleLogout }) => {
       {user ?
         <ul>
           <li>Welcome, {user.name}</li>
+          {/* ICEBOX - All profiles: community feature */}
+          {/* <li><Link to="/profiles">Profiles</Link></li> */}
           <li><Link to={`/profiles/${user.profile}`}>Profile</Link></li>
           <li><Link to="" onClick={handleLogout}>LOG OUT</Link></li>
           <li><Link to="/change-password">Change Password</Link></li>

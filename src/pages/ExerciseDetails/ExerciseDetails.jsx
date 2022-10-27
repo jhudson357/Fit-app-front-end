@@ -34,6 +34,7 @@ const ExerciseDetails = (props) => {
         </>
       }
       <Link to={'/exercises'}>All Exercises</Link>
+      <Link to={`/profiles/${props.user.profile}`}>Go to Profile</Link>
     </>
   )
 }
