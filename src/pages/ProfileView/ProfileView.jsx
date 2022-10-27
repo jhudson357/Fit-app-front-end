@@ -36,6 +36,8 @@ const ProfileView = (props) => {
   const handlePushMeal = async (pushMealData) => {
     try {
       await profileService.addMeal(profile._id, pushMealData)
+      const profileData = await profileService.getOneProfile(id)
+      setProfile(profileData)
     } catch (err) {
       console.log(err)
     }
@@ -60,6 +62,7 @@ const ProfileView = (props) => {
   const handleMealSubmit = evt => {
     evt.preventDefault()
     handlePushMeal(mealForm)
+    setProfile({...profile, meals: [...profile.meals, mealForm]})
   }
 
   useEffect(() => {

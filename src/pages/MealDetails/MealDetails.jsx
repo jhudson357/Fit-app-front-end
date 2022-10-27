@@ -9,6 +9,7 @@ const MealDetails = (props) => {
     // calories: 0,
     // image: ''
   })
+  const [meals, setMeals] =useState({})
   const {mealId} = useParams()
 
   useEffect(() => {
@@ -32,7 +33,8 @@ const MealDetails = (props) => {
 
   const handleAddMeal = async () => {
     console.log('meal details', mealDetails)
-    await mealService.addMeal(mealDetails)
+    const mealData =await mealService.addMeal(mealDetails)
+    setMeals(mealData)
     // post request to meals database in the backend
   }
   
