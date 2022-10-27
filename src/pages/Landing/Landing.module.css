@@ -1,5 +1,18 @@
 .container {
   display: flex;
   align-items: center;
-  flex-direction: column;
+  justify-content: center;
 }
+
+.imgContainer{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 90vh;
+}
+
+.image{
+  height: 65vh;
+  width: auto;
+}
+
