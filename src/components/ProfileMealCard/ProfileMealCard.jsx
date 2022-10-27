@@ -1,6 +1,4 @@
 const ProfileMealCard = (props) => {
-
-  console.log('MEAL ID', props.meal._id)
   return (
     <>
       {props.meal.label}

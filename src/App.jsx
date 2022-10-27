@@ -69,9 +69,7 @@ const App = () => {
   useEffect(() => {
     const fetchAllExercises = async () => {
       const exercisesData = await exerciseService.index()
-      console.log('Exercise Data:', exercisesData)
       setExercises(exercisesData)
-      console.log(exercises, 'EXERCISES')
     }
     fetchAllExercises()
   }, [])
@@ -79,9 +77,7 @@ const App = () => {
   useEffect(() => {
     const fetchAllMeals = async () => {
       const mealsData = await mealsService.index()
-      console.log('MEAL DATA', mealsData)
       setMeals(mealsData)
-      console.log(meals, "MEALS")
     }
     fetchAllMeals()
   }, [])
