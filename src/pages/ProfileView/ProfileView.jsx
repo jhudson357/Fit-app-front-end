@@ -13,9 +13,7 @@ const ProfileView = (props) => {
   // const [form, setForm] = useState({
   //   id: '',
   // })
-  const [mealForm, setMealForm] = useState({
-    id: ''
-  })
+  const [mealForm, setMealForm] = useState({})
 
   // const handleChange = ({ target }) => {
   //   setForm({...form, [target.name]: target.value })
@@ -116,7 +114,8 @@ const ProfileView = (props) => {
       }
       {profile.meals ?
       <form onSubmit={handleMealSubmit} onChange={handleMealChange}>
-        <select name="id" id=""  onChange={handleMealChange}>
+        <select name="id"  onChange={handleMealChange}>
+          <option value='' selected disabled>Select Meal</option>
           {props.meals.map((meal) => 
             <option key={meal._id} value={meal._id}>{meal.label}</option>
           )}
