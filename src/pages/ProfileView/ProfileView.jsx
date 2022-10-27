@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import ExerciseAdder from "../../components/ExerciseAdder/ExerciseAdder";
-import Goals from "../../components/Goals/Goals";
-import ProfileExerciseCard from "../../components/ProfileExerciseCard/ProfileExerciseCard";
-
+import { useState, useEffect } from "react"
+import { useParams } from "react-router-dom"
+import ExerciseAdder from "../../components/ExerciseAdder/ExerciseAdder"
+import Goals from "../../components/Goals/Goals"
+import ProfileExerciseCard from "../../components/ProfileExerciseCard/ProfileExerciseCard"
+import ProfileMealCard from "../../components/ProfileMealCard/ProfileMealCard"
 
 import * as profileService from '../../services/profileService'
 
@@ -33,6 +33,17 @@ const ProfileView = (props) => {
       console.log(err)
     }
   }
+
+  const handleDeleteExercise = async (profileId, exerciseId) => {
+    try {
+      await profileService.deleteExercise(profileId, exerciseId)
+      const profileData = await profileService.getOneProfile(id)
+      setProfile(profileData)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   const handlePushMeal = async (pushMealData) => {
     try {
       await profileService.addMeal(profile._id, pushMealData)
@@ -43,11 +54,9 @@ const ProfileView = (props) => {
     }
   }
 
-
-
-  const handleDeleteExercise = async (profileId, exerciseId) => {
+  const handleDeleteMeal = async (profileId, mealId) => {
     try {
-      await profileService.deleteExercise(profileId, exerciseId)
+      await profileService.deleteMeal(profileId, mealId)
       const profileData = await profileService.getOneProfile(id)
       setProfile(profileData)
     } catch (error) {
@@ -121,7 +130,12 @@ const ProfileView = (props) => {
         <>
           {profile.meals.map((meal, idx) => 
             <div key={idx}>
-              {meal.label}
+              {/* {meal.label} */}
+              <ProfileMealCard 
+                meal={meal}
+                handleDeleteMeal={handleDeleteMeal}
+                profileId={profile._id}
+              />
             </div>
           )}
         </>
