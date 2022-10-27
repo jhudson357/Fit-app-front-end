@@ -10,6 +10,19 @@ import * as profileService from '../../services/profileService'
 const ProfileView = (props) => {
   const { id } = useParams()
   const [profile, setProfile] = useState({})
+  const [form, setForm] = useState({
+    id: '',
+  })
+  const [mealForm, setMealForm] = useState({
+    id: ''
+  })
+
+  const handleChange = ({ target }) => {
+    setForm({...form, [target.name]: target.value })
+  }
+  const handleMealChange = ({ target }) => {
+    setMealForm({...mealForm, [target.name]: target.value })
+  }
 
   const handlePushExercise = async (pushData) => {
     try {
@@ -20,6 +33,15 @@ const ProfileView = (props) => {
       console.log(err)
     }
   }
+  const handlePushMeal = async (pushMealData) => {
+    try {
+      await profileService.addMeal(profile._id, pushMealData)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+
 
   const handleDeleteExercise = async (profileId, exerciseId) => {
     try {
@@ -29,6 +51,15 @@ const ProfileView = (props) => {
     } catch (error) {
       console.log(error)
     }
+  }
+
+  const handleSubmit = evt => {
+    evt.preventDefault()
+    handlePushExercise(form)
+  }
+  const handleMealSubmit = evt => {
+    evt.preventDefault()
+    handlePushMeal(form)
   }
 
   useEffect(() => {
@@ -46,7 +77,15 @@ const ProfileView = (props) => {
       <h1>{profile.name}'s goals and weekly plan:</h1>
       <h3>My goals:</h3>
       <Goals goals={profile.goals} profile={profile} setProfile={setProfile} id={id} />
-      <ExerciseAdder profile={profile} id={id} setProfile={setProfile} exercises={props.exercises} handlePushExercise={handlePushExercise} />
+      <h3>Add Exercises</h3>
+      <form onSubmit={handleSubmit} onChange={handleChange}>
+        <select name="id" id=""  onChange={handleChange}>
+          {props.exercises.map((exercise) => 
+            <option key={exercise._id} value={exercise._id}>{exercise.name}</option>
+          )}
+        </select>
+        <button type="submit">submit</button>
+      </form>
       {profile.exercises ?
         <>
           {profile.exercises.map((exercise, idx) => 
@@ -61,6 +100,29 @@ const ProfileView = (props) => {
         </>
         :
         <>Loading exercises...</>
+      }
+      {profile.meals ?
+      <form onSubmit={handleMealSubmit} onChange={handleMealChange}>
+        <select name="id" id=""  onChange={handleMealChange}>
+          {props.meals.map((meal) => 
+            <option key={meal._id} value={meal._id}>{meal.label}</option>
+          )}
+        </select>
+        <button type="submit">submit</button>
+      </form>
+      :
+      <>loading meals</>
+          }
+      {profile.meals ?
+        <>
+          {profile.meals.map((meal, idx) => 
+            <div key={idx}>
+              {meal.label}
+            </div>
+          )}
+        </>
+        :
+        <>Loading meals...</>
       }
 
     </>

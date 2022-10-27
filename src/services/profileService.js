@@ -79,6 +79,23 @@ const addExercise = async (profileId, pushData) => {
     
   }
 }
+const addMeal = async (profileId, pushMealData) => {
+  try {
+    console.log(pushMealData)
+    console.log(profileId)
+    const res = await fetch (`${BASE_URL}/${profileId}/meals`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${tokenService.getToken()}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(pushMealData)
+    })
+    return res.json()
+  } catch (error) {
+    
+  }
+}
 
 const updateGoal = async (profileId, goalId, goalData) => {
   try {
@@ -110,4 +127,4 @@ const deleteExercise = async (profileId, exerciseId) => {
   }
 }
 
-export { getAllProfiles, addPhoto, getOneProfile, createGoal, deleteGoal, addExercise, updateGoal, deleteExercise, }
+export { getAllProfiles, addPhoto, getOneProfile, createGoal, deleteGoal, addExercise, updateGoal, deleteExercise, addMeal }
