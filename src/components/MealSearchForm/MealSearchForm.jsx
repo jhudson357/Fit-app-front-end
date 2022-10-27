@@ -39,9 +39,6 @@ const MealSearchForm = (props) => {
             className={styles.input}
           />
         </div>
-        {/* <div>
-          <button>Search</button>
-        </div> */}
       </form>
     </>
   )

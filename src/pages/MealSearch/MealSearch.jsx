@@ -18,7 +18,7 @@ const MealSearch = () => {
         <MealSearchForm handleMealSearch={handleMealSearch}/>
       </div>
       {meals.length ? 
-        <div>
+        <div className={styles.cards}>
           {meals.map(meal => 
             <div key={meal.recipe.uri}>
               <MealCard meal={meal} />
