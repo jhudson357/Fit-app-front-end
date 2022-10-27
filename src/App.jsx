@@ -23,7 +23,7 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 // services
 import * as authService from './services/authService'
 import * as exerciseService from './services/exerciseService'
-import * as daysService from './services/dayService'
+import * as mealsService from './services/mealService'
 
 // styles
 import './App.css'
@@ -32,7 +32,7 @@ const App = () => {
   const navigate = useNavigate()
   const [user, setUser] = useState(authService.getUser())
   const [exercises, setExercises] = useState([])
-  const [days, setDays] = useState([])
+  const [meals, setMeals] = useState([])
 
 
   const handleLogout = () => {
@@ -76,15 +76,15 @@ const App = () => {
     fetchAllExercises()
   }, [])
 
-  // useEffect(() => {
-  //   const fetchAllDays = async () => {
-  //     const daysData = await daysService.index()
-  //     console.log('Exercise Data:', daysData)
-  //     setDays(daysData)
-  //     console.log(days, 'Days')
-  //   }
-  //   fetchAllDays()
-  // }, [])
+  useEffect(() => {
+    const fetchAllMeals = async () => {
+      const mealsData = await mealsService.index()
+      console.log('MEAL DATA', mealsData)
+      setMeals(mealsData)
+      console.log(meals, "MEALS")
+    }
+    fetchAllMeals()
+  }, [])
 
 
 
@@ -105,7 +105,7 @@ const App = () => {
           path="/profiles"
           element={
             <ProtectedRoute user={user}>
-              <Profiles user={user} exersices={exercises}/>
+              <Profiles user={user} />
             </ProtectedRoute>
           }
         />
@@ -113,7 +113,7 @@ const App = () => {
           path="/profiles/:id"
           element={
             <ProtectedRoute user={user}>
-              <ProfileView user={user} exercises={exercises}/>
+              <ProfileView user={user} exercises={exercises} meals={meals}/>
             </ProtectedRoute>
           }
         />

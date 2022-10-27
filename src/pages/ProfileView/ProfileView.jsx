@@ -11,9 +11,15 @@ const ProfileView = (props) => {
   const [form, setForm] = useState({
     id: '',
   })
+  const [mealForm, setMealForm] = useState({
+    id: ''
+  })
 
   const handleChange = ({ target }) => {
     setForm({...form, [target.name]: target.value })
+  }
+  const handleMealChange = ({ target }) => {
+    setMealForm({...mealForm, [target.name]: target.value })
   }
 
   const handlePushExercise = async (pushData) => {
@@ -23,6 +29,15 @@ const ProfileView = (props) => {
       console.log(err)
     }
   }
+  const handlePushMeal = async (pushMealData) => {
+    try {
+      await profileService.addMeal(profile._id, pushMealData)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+
 
   const handleDeleteExercise = async (profileId, exerciseId) => {
     try {
@@ -37,6 +52,10 @@ const ProfileView = (props) => {
     evt.preventDefault()
     handlePushExercise(form)
   }
+  const handleMealSubmit = evt => {
+    evt.preventDefault()
+    handlePushMeal(form)
+  }
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -44,7 +63,7 @@ const ProfileView = (props) => {
       setProfile(profileData)
     }
     fetchProfile()
-  }, [profile.exercises])
+  }, [id])
 
   console.log('PROFILE ID', profile._id)
   // console.log('PROFILE EXERCISES', profile.exercises[0].name)
@@ -53,7 +72,6 @@ const ProfileView = (props) => {
       <h1>{profile.name}'s goals and weekly plan:</h1>
       <h3>My goals:</h3>
       <Goals goals={profile.goals} profile={profile} setProfile={setProfile} id={id} />
-
       <h3>Add Exercises</h3>
       <form onSubmit={handleSubmit} onChange={handleChange}>
         <select name="id" id=""  onChange={handleChange}>
@@ -77,6 +95,29 @@ const ProfileView = (props) => {
         </>
         :
         <>Loading exercises...</>
+      }
+      {profile.meals ?
+      <form onSubmit={handleMealSubmit} onChange={handleMealChange}>
+        <select name="id" id=""  onChange={handleMealChange}>
+          {props.meals.map((meal) => 
+            <option key={meal._id} value={meal._id}>{meal.label}</option>
+          )}
+        </select>
+        <button type="submit">submit</button>
+      </form>
+      :
+      <>loading meals</>
+          }
+      {profile.meals ?
+        <>
+          {profile.meals.map((meal, idx) => 
+            <div key={idx}>
+              {meal.label}
+            </div>
+          )}
+        </>
+        :
+        <>Loading meals...</>
       }
 
     </>
