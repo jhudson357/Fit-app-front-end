@@ -9,8 +9,6 @@ const GoalCard = (props) => {
   const handleDelete = (e) => {
     e.preventDefault()
     props.handleDeleteGoal(props.id, props.goal._id)
-    const newGoals = props.profile.goals.filter(goal => goal._id !== props.goal._id)
-    props.setProfile({...props.profile, goals: newGoals})
   }
 
   const handleChange = ({ target }) => {
@@ -27,7 +25,6 @@ const GoalCard = (props) => {
       props.setProfile({...props.profile, goals: newGoals})
     }
   }
-
 
   return ( 
     <>

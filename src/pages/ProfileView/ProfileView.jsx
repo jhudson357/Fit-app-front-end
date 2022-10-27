@@ -74,6 +74,26 @@ const ProfileView = (props) => {
     setProfile({...profile, meals: [...profile.meals, mealForm]})
   }
 
+  const handleDeleteGoal = async (profileId, goalId) => {
+    try {
+      await profileService.deleteGoal(profileId, goalId)
+      const profileData = await profileService.getOneProfile(id)
+      setProfile(profileData.profile)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  const handleAddGoal = async (goalData) => {
+    try {
+      await profileService.createGoal(id, goalData)
+      const profileData = await profileService.getOneProfile(id)
+      setProfile(profileData.profile)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   const isFormInvalid = () => {
     return !(mealForm.id)
   }
@@ -92,7 +112,7 @@ const ProfileView = (props) => {
     <>
       <h1>{profile.name}'s goals and weekly plan:</h1>
       <h3>My goals:</h3>
-      <Goals goals={profile.goals} profile={profile} setProfile={setProfile} id={id} />
+      <Goals goals={profile.goals} profile={profile} setProfile={setProfile} id={id} handleDeleteGoal={handleDeleteGoal} handleAddGoal={handleAddGoal}/>
       <h3>Add Exercises</h3>
       <ExerciseAdder profile={profile} id={id} setProfile={setProfile} exercises={props.exercises} exerciseNotInProfile={exerciseNotInProfile} handlePushExercise={handlePushExercise} />
       {profile.exercises ?

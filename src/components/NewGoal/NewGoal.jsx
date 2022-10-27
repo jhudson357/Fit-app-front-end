@@ -11,8 +11,7 @@ const NewGoal = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     props.handleAddGoal(form)
-    props.setProfile({...props.profile, goals: [...props.profile.goals, form]})
-    setForm({content: ''})
+    setForm({content: '', date: ''})
   }
 
 
