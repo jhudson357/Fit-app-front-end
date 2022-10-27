@@ -27,7 +27,6 @@ const GoalCard = (props) => {
     }
   }
 
-
   return ( 
     <>
       <form onSubmit={handleUpdate}>
