@@ -23,8 +23,9 @@ const ProfileView = (props) => {
 
   const handleDeleteExercise = async (profileId, exerciseId) => {
     try {
-      const deletedExercise = await profileService.deleteExercise(profileId, exerciseId)
-      setProfile(profile.exercises.filter(exercise => exercise._id !== deletedExercise._id))
+      await profileService.deleteExercise(profileId, exerciseId)
+      const profileData = await profileService.getOneProfile(id)
+      setProfile(profileData)
     } catch (error) {
       console.log(error)
     }
