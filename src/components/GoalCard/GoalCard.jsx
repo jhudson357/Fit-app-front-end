@@ -31,7 +31,14 @@ const GoalCard = (props) => {
       <form onSubmit={handleUpdate}>
         {!isEditing ? 
           <>
-            <h2>{props.goal.content} by {props.goal.date}</h2>
+            {props.goal.date !== '' ?
+              <>
+                <h2>{props.goal.content}</h2>
+                <h3>by {props.goal.date}</h3>
+              </>
+            :
+              <h2>{props.goal.content}</h2>
+            }
           </>
 
         : <>

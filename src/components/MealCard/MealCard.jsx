@@ -11,8 +11,6 @@ const MealCard = (props) => {
     <Link to={`/meals/${mealId}`}  >
       <img src={props.meal.recipe.image} alt="" />
       {props.meal.recipe.label}
-      <br />
-      {mealId}
     </Link>
   )
 }
