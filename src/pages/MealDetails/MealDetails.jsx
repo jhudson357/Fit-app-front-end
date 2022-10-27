@@ -42,7 +42,9 @@ const MealDetails = (props) => {
           )}
 
       </ul>
-      <a href={mealDetails.recipe.url} target="_blank" rel="noopener noreferrer">Instructions</a>
+      <button>
+        <a href={mealDetails.recipe.url} target="_blank" rel="noopener noreferrer">Instructions</a>
+      </button>
       
       {props.user ?  
         <>
