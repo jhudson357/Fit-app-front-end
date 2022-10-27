@@ -10,15 +10,14 @@ import * as profileService from '../../services/profileService'
 const ProfileView = (props) => {
   const { id } = useParams()
   const [profile, setProfile] = useState({})
-  // const [form, setForm] = useState({
-  //   id: '',
-  // })
-  const [mealForm, setMealForm] = useState({})
-  const [exerciseNotInProfile, setExerciseNotInProfile] =useState([])
 
-  // const handleChange = ({ target }) => {
-  //   setForm({...form, [target.name]: target.value })
-  // }
+  const [mealForm, setMealForm] = useState({
+    id: ''
+  })
+  const [exerciseNotInProfile, setExerciseNotInProfile] =useState([])
+  const [mealNotInProfile, setMealeNotInProfile] =useState([])
+
+
   const handleMealChange = ({ target }) => {
     setMealForm({...mealForm, [target.name]: target.value })
   }
@@ -50,7 +49,7 @@ const ProfileView = (props) => {
       await profileService.addMeal(profile._id, pushMealData)
       const profileData = await profileService.getOneProfile(id)
       setProfile(profileData.profile)
-      // setExerciseNotInProfile(profileData.exerciseNotInProfile)
+      setMealeNotInProfile(profileData.mealNotInProfile)
     } catch (err) {
       console.log(err)
     }
@@ -61,20 +60,22 @@ const ProfileView = (props) => {
       await profileService.deleteMeal(profileId, mealId)
       const profileData = await profileService.getOneProfile(id)
       setProfile(profileData.profile)
-      // setExerciseNotInProfile(profileData.exerciseNotInProfile)
+      setMealeNotInProfile(profileData.mealNotInProfile)
     } catch (error) {
       console.log(error)
     }
   }
 
-  // const handleSubmit = evt => {
-  //   evt.preventDefault()
-  //   handlePushExercise(form)
-  // }
+
   const handleMealSubmit = evt => {
     evt.preventDefault()
     handlePushMeal(mealForm)
+    setMealForm({id: ''})
     setProfile({...profile, meals: [...profile.meals, mealForm]})
+  }
+
+  const isFormInvalid = () => {
+    return !(mealForm.id)
   }
 
   useEffect(() => {
@@ -83,6 +84,7 @@ const ProfileView = (props) => {
       console.log(profileData, "PROFILE DATA")
       setProfile(profileData.profile)
       setExerciseNotInProfile(profileData.exerciseNotInProfile)
+      setMealeNotInProfile(profileData.mealNotInProfile)
     }
     fetchProfile()
   }, [id])
@@ -119,15 +121,15 @@ const ProfileView = (props) => {
         :
         <>Loading exercises...</>
       }
-      {props.meals ?
+      {profile.meals ?
       <form onSubmit={handleMealSubmit} onChange={handleMealChange}>
-        <select name="id"  onChange={handleMealChange}>
-          {/* <option value='' selected disabled>Select Meal</option> */}
-          {props.meals.map((meal) => 
+        <select name="id" value={mealForm.id} onChange={handleMealChange}>
+          <option value='' defaultValue='' disabled>Select Meal</option>
+          {mealNotInProfile.map((meal) => 
             <option key={meal._id} value={meal._id}>{meal.label}</option>
           )}
         </select>
-        <button type="submit">submit</button>
+        <button disabled={isFormInvalid()} type="submit">submit</button>
       </form>
       :
       <>loading meals</>
