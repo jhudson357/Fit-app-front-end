@@ -1,9 +1,8 @@
 import { useState } from 'react'
 
 const ExerciseAdder = (props) => {
-  const [form, setForm] = useState({
-    id: '',
-  })
+  const [form, setForm] = useState({})
+
 
   const handleChange = ({ target }) => {
     setForm({...form, [target.name]: target.value })
@@ -20,9 +19,10 @@ const ExerciseAdder = (props) => {
     <>
       <h3>Today's Exercises</h3>
       <form onSubmit={handleSubmit} onChange={handleChange}>
-        <select name="id" id=""  onChange={handleChange}>
+        <select name="id"  onChange={handleChange}>
+        <option value='' selected disabled>Select Exercise</option>
           {props.exercises.map((exercise) => 
-            <option key={exercise._id} value={exercise._id}>{exercise.name}</option>
+            <option key={exercise._id}value={exercise._id}>{exercise.name}</option>
           )}
         </select>
         <button type="submit">submit</button>
