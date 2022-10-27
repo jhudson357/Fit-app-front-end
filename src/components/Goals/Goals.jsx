@@ -28,7 +28,7 @@ const Goals = (props) => {
     }
   }
 
-  if (!props.goals) return <h3>No Goals Yet</h3>
+  if (!props.goals) return <h3>no goals yet</h3>
   return (  
     <>
       {props.goals.map((goal, idx) => (
