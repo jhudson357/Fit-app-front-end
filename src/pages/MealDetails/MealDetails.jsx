@@ -49,7 +49,7 @@ const MealDetails = (props) => {
           <button onClick={() => handleAddMeal()}>Save Meal to Profile</button>
         </>
         :
-        <>TEST</>
+        <></>
       }
 
       </>
