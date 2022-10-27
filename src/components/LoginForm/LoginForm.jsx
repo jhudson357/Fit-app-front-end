@@ -32,6 +32,8 @@ const LoginForm = props => {
       onSubmit={handleSubmit}
       className={styles.container}
     >
+      <h1>Login</h1>
+      <p>{props.message}</p>
       <div className={styles.inputContainer}>
         <label htmlFor="email" className={styles.label}>Email</label>
         <input
