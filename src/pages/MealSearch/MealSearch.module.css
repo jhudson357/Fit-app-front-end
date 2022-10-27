@@ -2,4 +2,17 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  justify-content: center;
+}
+
+.form {
+  width: 100%;
+  max-width: 500px;
+  margin: 30px;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }

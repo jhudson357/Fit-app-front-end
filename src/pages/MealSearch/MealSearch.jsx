@@ -13,23 +13,23 @@ const MealSearch = () => {
   }
   
   return (
-    <>
-      <h2>Meals</h2>
-      <MealSearchForm handleMealSearch={handleMealSearch}/>
+    <main className={styles.container}>
+      <div className={styles.form}>
+        <MealSearchForm handleMealSearch={handleMealSearch}/>
+      </div>
       {meals.length ? 
-        <ul>
+        <div className={styles.cards}>
           {meals.map(meal => 
-            <li key={meal.recipe.uri}>
+            <div key={meal.recipe.uri}>
               <MealCard meal={meal} />
-            </li> 
+            </div>
           )}
-        </ul>
+        </div>
         :
         <>
-          
         </>
       }
-    </>
+    </ main>
   )
 }
 
