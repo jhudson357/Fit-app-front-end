@@ -81,7 +81,6 @@ const ProfileView = (props) => {
   useEffect(() => {
     const fetchProfile = async () => {
       const profileData = await profileService.getOneProfile(id)
-      console.log(profileData, "PROFILE DATA")
       setProfile(profileData.profile)
       setExerciseNotInProfile(profileData.exerciseNotInProfile)
       setMealeNotInProfile(profileData.mealNotInProfile)
@@ -89,22 +88,12 @@ const ProfileView = (props) => {
     fetchProfile()
   }, [id])
 
-  console.log('PROFILE ID', profile._id)
-  // console.log('PROFILE EXERCISES', profile.exercises[0].name)
   return (  
     <>
       <h1>{profile.name}'s goals and weekly plan:</h1>
       <h3>My goals:</h3>
       <Goals goals={profile.goals} profile={profile} setProfile={setProfile} id={id} />
       <h3>Add Exercises</h3>
-      {/* <form onSubmit={handleSubmit} onChange={handleChange}>
-        <select name="id" id=""  onChange={handleChange}>
-          {props.exercises.map((exercise) => 
-            <option key={exercise._id} value={exercise._id}>{exercise.name}</option>
-          )}
-        </select>
-        <button type="submit">submit</button>
-      </form> */}
       <ExerciseAdder profile={profile} id={id} setProfile={setProfile} exercises={props.exercises} exerciseNotInProfile={exerciseNotInProfile} handlePushExercise={handlePushExercise} />
       {profile.exercises ?
         <>

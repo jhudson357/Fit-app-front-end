@@ -64,8 +64,6 @@ const deleteGoal = async (profileId, goalId) => {
 
 const addExercise = async (profileId, pushData) => {
   try {
-    console.log(pushData)
-    console.log(profileId)
     const res = await fetch (`${BASE_URL}/${profileId}/exercises`, {
       method: 'POST',
       headers: {
@@ -81,8 +79,6 @@ const addExercise = async (profileId, pushData) => {
 }
 const addMeal = async (profileId, pushMealData) => {
   try {
-    console.log(pushMealData)
-    console.log(profileId)
     const res = await fetch (`${BASE_URL}/${profileId}/meals`, {
       method: 'POST',
       headers: {
