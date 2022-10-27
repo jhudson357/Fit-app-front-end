@@ -5,7 +5,6 @@ const EditExercise = (props) => {
   const { state } = useLocation()
   const[form, setForm] = useState(state)
 
-  console.log('STATE', state)
   const handleChange = ({ target }) => {
     setForm({ ...form, [target.name]: target.value })
   }

@@ -8,25 +8,9 @@ const MealSearchForm = (props) => {
     mealQuery: ''
   })
 
-  // const [results, setResults] = useState([])
-
   const handleChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
-
-  // const handleSubmit = async evt => {
-  //   console.log('SUBMITTED')
-  //   evt.preventDefault()
-  //   try {
-  //     const resultData = await mealService.search(formData)
-  //     setResults(resultData)
-  //     console.log('FORM DATA', formData)
-  //     console.log('RESULTS', results)
-  //     props.getMealList(results)
-  //   } catch (err) {
-  //     console.log(err) 
-  //   }
-  // }
 
   const handleSubmit = evt => {
     evt.preventDefault()
