@@ -1,7 +1,9 @@
 import { useState } from 'react'
 
 const ExerciseAdder = (props) => {
-  const [form, setForm] = useState({})
+  const [form, setForm] = useState(
+    {id: ''}
+  )
 
 
   const handleChange = ({ target }) => {
@@ -12,20 +14,25 @@ const ExerciseAdder = (props) => {
     console.log(form, 'AAAAAAHHHHHH')
     evt.preventDefault()
     props.handlePushExercise(form)
-    props.setProfile({...props.profile, exercises: [...props.profile.exercises, form]})
+    setForm({id: ''})
+    props.setProfile({...props.profile, exercises: [...props.exercises, form]})
+  }
+
+  const isFormInvalid = () => {
+    return !(form.id)
   }
 
   return (  
     <>
       <h3>Today's Exercises</h3>
       <form onSubmit={handleSubmit} onChange={handleChange}>
-        <select name="id"  onChange={handleChange}>
-        <option value='' selected disabled>Select Exercise</option>
-          {props.exercises.map((exercise) => 
+        <select name="id"  value={form.id} onChange={handleChange}>
+        <option value='' defaultValue='' disabled>Select Exercise</option>
+          {props.exerciseNotInProfile.map((exercise) => 
             <option key={exercise._id}value={exercise._id}>{exercise.name}</option>
           )}
         </select>
-        <button type="submit">submit</button>
+        <button disabled={isFormInvalid()} type="submit">submit</button>
       </form>
     </>
   );
