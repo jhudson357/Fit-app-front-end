@@ -1,16 +1,5 @@
-.container {
+h1{
   display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
   align-items: center;
-  margin-bottom: 50px;
-}
-
-.label,
-.button {
-  margin-right: .5rem;
-}
-
-.inputContainer {
-  margin-bottom: 1rem;
+  justify-content: center;
 }
