@@ -9,8 +9,6 @@ const GoalCard = (props) => {
   const handleDelete = (e) => {
     e.preventDefault()
     props.handleDeleteGoal(props.id, props.goal._id)
-    const newGoals = props.profile.goals.filter(goal => goal._id !== props.goal._id)
-    props.setProfile({...props.profile, goals: newGoals})
   }
 
   const handleChange = ({ target }) => {
@@ -21,7 +19,6 @@ const GoalCard = (props) => {
     e.preventDefault()
     //this conditinal prevents allowing the form to PUT an empty object to the backend when isEditing state is changed, triggering a component re-render
     if (form.content) {
-      console.log(form)
       props.handleUpdateGoal(props.goal._id, form)
       const idx = props.profile.goals.indexOf(props.goal)
       props.profile.goals[idx] = form
