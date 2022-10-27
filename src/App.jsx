@@ -113,7 +113,7 @@ const App = () => {
           path="/profiles/:id"
           element={
             <ProtectedRoute user={user}>
-              <ProfileView user={user} exercises={exercises} meals={meals}/>
+              <ProfileView user={user}  exercises={exercises} meals={meals}/>
             </ProtectedRoute>
           }
         />
