@@ -26,7 +26,7 @@ const MealSearch = () => {
         </ul>
         :
         <>
-          Please search for a meal
+          
         </>
       }
     </>
