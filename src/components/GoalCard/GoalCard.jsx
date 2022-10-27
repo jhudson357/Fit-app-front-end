@@ -1,10 +1,9 @@
 import { useState } from "react"
 
-const currentDate = new Date()
 
 const GoalCard = (props) => {
   const [isEditing, setIsEditing] = useState(false)
-  const [form, setForm] = useState({content: '', date: currentDate})
+  const [form, setForm] = useState({content: '', date: ''})
 
 
   const handleDelete = (e) => {

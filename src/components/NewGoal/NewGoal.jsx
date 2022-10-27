@@ -1,9 +1,8 @@
 import { useState } from "react";
 
-const currentDate = new Date()
 
 const NewGoal = (props) => {
-  const [form, setForm] = useState({content: '', date: currentDate})
+  const [form, setForm] = useState({content: '', date: ''})
 
   const handleChange = ({ target }) => {
     setForm({ ...form, [target.name]: target.value })
