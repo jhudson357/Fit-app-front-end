@@ -111,54 +111,63 @@ const ProfileView = (props) => {
   return (  
     <>
       <h1>{profile.name}'s goals and weekly plan:</h1>
-      <h3>My goals:</h3>
-      <Goals goals={profile.goals} profile={profile} setProfile={setProfile} id={id} handleDeleteGoal={handleDeleteGoal} handleAddGoal={handleAddGoal}/>
-      <h3>Add Exercises</h3>
-      <ExerciseAdder profile={profile} id={id} setProfile={setProfile} exercises={props.exercises} exerciseNotInProfile={exerciseNotInProfile} handlePushExercise={handlePushExercise} />
-      {profile.exercises ?
-        <>
-          {profile.exercises.map((exercise, idx) => 
-            <div key={idx}>
-              <ProfileExerciseCard
-                exercise={exercise}
-                handleDeleteExercise={handleDeleteExercise}
-                profileId={profile._id}
-              /> 
-            </div>
-          )}
-        </>
+
+      <div>
+        <h3>My goals:</h3>
+        <Goals goals={profile.goals} profile={profile} setProfile={setProfile} id={id} handleDeleteGoal={handleDeleteGoal} handleAddGoal={handleAddGoal}/>
+      </div>
+
+      <div>
+        <h3>Add Exercises</h3>
+        <ExerciseAdder profile={profile} id={id} setProfile={setProfile} exercises={props.exercises} exerciseNotInProfile={exerciseNotInProfile} handlePushExercise={handlePushExercise} />
+        {profile.exercises ?
+          <>
+            {profile.exercises.map((exercise, idx) => 
+              <div key={idx}>
+                <ProfileExerciseCard
+                  exercise={exercise}
+                  handleDeleteExercise={handleDeleteExercise}
+                  profileId={profile._id}
+                /> 
+              </div>
+            )}
+          </>
+          :
+          <>Loading exercises...</>
+        }
+      </div>
+      
+      <div>
+        {profile.meals ?
+        <form onSubmit={handleMealSubmit} onChange={handleMealChange}>
+          <select name="id" value={mealForm.id} onChange={handleMealChange}>
+            <option value='' defaultValue='' disabled>Select Meal</option>
+            {mealNotInProfile.map((meal) => 
+              <option key={meal._id} value={meal._id}>{meal.label}</option>
+            )}
+          </select>
+          <button disabled={isFormInvalid()} type="submit">submit</button>
+        </form>
         :
-        <>Loading exercises...</>
-      }
-      {profile.meals ?
-      <form onSubmit={handleMealSubmit} onChange={handleMealChange}>
-        <select name="id" value={mealForm.id} onChange={handleMealChange}>
-          <option value='' defaultValue='' disabled>Select Meal</option>
-          {mealNotInProfile.map((meal) => 
-            <option key={meal._id} value={meal._id}>{meal.label}</option>
-          )}
-        </select>
-        <button disabled={isFormInvalid()} type="submit">submit</button>
-      </form>
-      :
-      <>loading meals</>
-          }
-      {profile.meals ?
-        <>
-          {profile.meals.map((meal, idx) => 
-            <div key={idx}>
-              {/* {meal.label} */}
-              <ProfileMealCard 
-                meal={meal}
-                handleDeleteMeal={handleDeleteMeal}
-                profileId={profile._id}
-              />
-            </div>
-          )}
-        </>
-        :
-        <>Loading meals...</>
-      }
+        <>loading meals</>
+            }
+        {profile.meals ?
+          <>
+            {profile.meals.map((meal, idx) => 
+              <div key={idx}>
+                {/* {meal.label} */}
+                <ProfileMealCard 
+                  meal={meal}
+                  handleDeleteMeal={handleDeleteMeal}
+                  profileId={profile._id}
+                />
+              </div>
+            )}
+          </>
+          :
+          <>Loading meals...</>
+        }
+      </div>
 
     </>
   );

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styles from './NewGoal.module.css'
 
 
 const NewGoal = (props) => {
@@ -16,18 +17,21 @@ const NewGoal = (props) => {
 
 
   return (  
-    <form onSubmit={handleSubmit}>
-      <textarea
-        required
-        type="text"
-        name="content"
-        id="text-input"
-        value={form.content}
-        placeholder="Add a Goal"
-        onChange={handleChange}
-      />
-      <input type="date" name='date' value={form.date} onChange={handleChange}/>
-      <button type="submit">Add Goal</button>
+    <form onSubmit={handleSubmit} className={styles.container}>
+      <div>
+        <textarea
+          required
+          type="text"
+          name="content"
+          id="text-input"
+          value={form.content}
+          placeholder="Add a Goal"
+          onChange={handleChange}
+        />
+        <input type="date" name='date' value={form.date} onChange={handleChange}/>
+      </div>
+
+      <button type="submit" className={styles.editButton}>Add Goal</button>
     </form>
   );
 }
