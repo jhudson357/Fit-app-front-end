@@ -52,10 +52,11 @@ const GoalCard = (props) => {
         </>}
 
         <div className={styles.editButtons}>
-        {isEditing ?
-        <button onClick={() => setIsEditing(false)} type='submit'>Save</button> 
-        : <button onClick={() => setIsEditing(true)}>Edit</button>}
-        <button onClick={handleDelete}>Delete</button>
+          {isEditing ?
+          <button onClick={() => setIsEditing(false)} type='submit'>Save</button> 
+          : <i onClick={() => setIsEditing(true)} class="fa-solid fa-pen-to-square"></i>}
+          <i className="fa-solid fa-trash" onClick={handleDelete}></i>
+        
 
         </div>
       </form>

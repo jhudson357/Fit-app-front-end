@@ -148,7 +148,7 @@ const ProfileView = (props) => {
                 <option key={meal._id} value={meal._id}>{meal.label}</option>
               )}
             </select>
-            <button disabled={isFormInvalid()} type="submit">submit</button>
+            <button className={styles.editButton}disabled={isFormInvalid()} type="submit">submit <i class="fa-solid fa-share"></i></button>
           </form>
           :
           <>loading meals</>

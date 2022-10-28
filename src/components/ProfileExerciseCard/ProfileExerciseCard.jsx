@@ -8,9 +8,7 @@ const ProfileExerciseCard = (props) => {
       <Link to={`/exercises/${props.exercise._id}`}>
         {props.exercise.name}
       </Link>
-      <button onClick={() => props.handleDeleteExercise(props.profileId, props.exercise._id)} >
-        DELETE
-      </button>
+      <i class="fa-solid fa-trash" onClick={() => props.handleDeleteExercise(props.profileId, props.exercise._id)}></i>
     </div>
   )
 }
