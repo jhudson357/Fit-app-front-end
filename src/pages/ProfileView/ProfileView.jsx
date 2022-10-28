@@ -115,14 +115,13 @@ const ProfileView = (props) => {
           <Goals goals={profile.goals} profile={profile} setProfile={setProfile} id={id} handleDeleteGoal={handleDeleteGoal} handleAddGoal={handleAddGoal}/>
         </div>
 
-        <h3>Add Exercises</h3>
         <div className={styles.container}>
           <div className={styles.exerciseForm}>
             <ExerciseAdder profile={profile} id={id} setProfile={setProfile} exercises={props.exercises} exerciseNotInProfile={exerciseNotInProfile} handlePushExercise={handlePushExercise} />
           </div>
 
           {profile.exercises ?
-            <>
+            <div className={styles.exerciseCards}>
               {profile.exercises.map((exercise, idx) => 
                 <div key={idx}>
                   <ProfileExerciseCard
@@ -132,16 +131,17 @@ const ProfileView = (props) => {
                   /> 
                 </div>
               )}
-            </>
+            </div>
             :
             <>Loading exercises...</>
           }
         </div>
         
-        <h3>Add to Cookbook</h3>
+        
         <div className={styles.container}>
           {profile.meals ?
           <form className={styles.exerciseForm} onSubmit={handleMealSubmit} onChange={handleMealChange}>
+            <h3 className={styles.header} >Add to Cookbook</h3>
             <select name="id" value={mealForm.id} onChange={handleMealChange}>
               <option value='' defaultValue='' disabled>Select Meal</option>
               {mealNotInProfile.map((meal) => 
@@ -154,7 +154,7 @@ const ProfileView = (props) => {
           <>loading meals</>
               }
           {profile.meals ?
-            <>
+            <div className={styles.mealCards}>
               {profile.meals.map((meal, idx) => 
                 <div key={idx}>
                   {/* {meal.label} */}
@@ -165,7 +165,7 @@ const ProfileView = (props) => {
                   />
                 </div>
               )}
-            </>
+            </div>
             :
             <>Loading meals...</>
           }
