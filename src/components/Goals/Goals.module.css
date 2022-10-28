@@ -1,5 +1,12 @@
 .container {
   display: flex;
   flex-direction: row;
-  width: 40px;
+  flex-wrap: wrap;
+}
+
+.allGoalContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
