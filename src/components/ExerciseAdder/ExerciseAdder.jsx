@@ -15,7 +15,6 @@ const ExerciseAdder = (props) => {
     evt.preventDefault()
     props.handlePushExercise(form)
     setForm({id: ''})
-    props.setProfile({...props.profile, exercises: [...props.exercises, form]})
   }
 
   const isFormInvalid = () => {
