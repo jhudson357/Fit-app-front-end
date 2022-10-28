@@ -1,5 +1,5 @@
 import { useState } from "react"
-
+import styles from './GoalCard.module.css'
 
 const GoalCard = (props) => {
   const [isEditing, setIsEditing] = useState(false)
@@ -28,13 +28,13 @@ const GoalCard = (props) => {
 
   return ( 
     <>
-      <form onSubmit={handleUpdate}>
+      <form onSubmit={handleUpdate} className={styles.container}>
         {!isEditing ? 
           <>
             {props.goal.date !== '' ?
               <>
                 <h2>{props.goal.content}</h2>
-                <h3>by {props.goal.date}</h3>
+                <h4>by {props.goal.date}</h4>
               </>
             :
               <h2>{props.goal.content}</h2>
@@ -47,17 +47,17 @@ const GoalCard = (props) => {
           value={form.content}
           placeholder={props.goal.content}
           onChange={handleChange}
-        ></textarea>
-        <input type="date" name='date' value={form.date} onChange={handleChange}/> 
+          ></textarea>
+          <input type="date" name='date' value={form.date} onChange={handleChange}/> 
         </>}
 
+        <div className={styles.editButtons}>
         {isEditing ?
         <button onClick={() => setIsEditing(false)} type='submit'>Save</button> 
         : <button onClick={() => setIsEditing(true)}>Edit</button>}
-      </form>
+        <button onClick={handleDelete}>Delete</button>
 
-      <form onSubmit={handleDelete}>
-        <button type='submit'>Delete</button>
+        </div>
       </form>
     </>
   );
