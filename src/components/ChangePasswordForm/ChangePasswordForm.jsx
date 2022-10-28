@@ -42,6 +42,7 @@ const ChangePasswordForm = props => {
       onSubmit={handleSubmit}
       className={styles.container}
     >
+      <h1>Change Password</h1>
       <div className={styles.inputContainer}>
         <label htmlFor="password" className={styles.label}>
           Current Password
