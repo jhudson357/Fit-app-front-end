@@ -21,10 +21,10 @@ const NewExercise = (props) => {
   return (
     <main>
       <div className={styles.form}>
-        <form onSubmit={handleSubmit} autoComplete="off">
+        <form className={styles.newExe} onSubmit={handleSubmit} autoComplete="off">
         <h2>Create an Exercise</h2>
-          <div>
-            <label htmlFor="name-input">Exercise</label>
+          <div className={styles.form}>
+            <label className={styles.newExeLabel} htmlFor="name-input">Exercise</label>
             <input
               required
               type="text"
@@ -35,8 +35,8 @@ const NewExercise = (props) => {
               onChange={handleChange}
             />
           </div>
-          <div>
-            <label htmlFor="reps-input">Reps</label>
+          <div className={styles.form}>
+            <label className={styles.newExeLabel}  htmlFor="reps-input">Reps</label>
             <input
               required
               type="number"
@@ -47,8 +47,8 @@ const NewExercise = (props) => {
               onChange={handleChange}
             />
           </div>
-          <div>
-            <label htmlFor="muscle-input">Muscle</label>
+          <div className={styles.form}>
+            <label className={styles.newExeLabel}  htmlFor="muscle-input">Muscle</label>
             <select
               required
               name="muscle"
@@ -64,8 +64,8 @@ const NewExercise = (props) => {
               <option value="legs">Legs</option>
             </select>
           </div>
-          <div>
-            <label htmlFor="equipment-input">Equipment</label>
+          <div className={styles.form}>
+            <label className={styles.newExeLabel}  htmlFor="equipment-input">Equipment</label>
             <input
               required
               type="text"
@@ -76,7 +76,7 @@ const NewExercise = (props) => {
               onChange={handleChange}
             />
           </div>
-          <button type="submit">SUBMIT</button>
+          <button className={styles.newExeBtn}type="submit">SUBMIT</button>
         </form>
       </div>
     </main>
