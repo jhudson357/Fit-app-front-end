@@ -19,12 +19,11 @@ const NewExercise = (props) => {
   }
   
   return (
-    <main>
-      <div className={styles.form}>
-        <form className={styles.newExe} onSubmit={handleSubmit} autoComplete="off">
+    <main className={styles.container}>
+      <form className={styles.container} onSubmit={handleSubmit} autoComplete="off">
         <h2>Create an Exercise</h2>
-          <div className={styles.form}>
-            <label className={styles.newExeLabel} htmlFor="name-input">Exercise</label>
+        <div className={styles.inputContainer}>
+            <label className={styles.label} htmlFor="name-input">Exercise</label>
             <input
               required
               type="text"
@@ -34,51 +33,51 @@ const NewExercise = (props) => {
               placeholder="Name"
               onChange={handleChange}
             />
-          </div>
-          <div className={styles.form}>
-            <label className={styles.newExeLabel}  htmlFor="reps-input">Reps</label>
-            <input
-              required
-              type="number"
-              name="reps"
-              id="reps-input"
-              value={form.reps}
-              placeholder="Reps"
-              onChange={handleChange}
-            />
-          </div>
-          <div className={styles.form}>
-            <label className={styles.newExeLabel}  htmlFor="muscle-input">Muscle</label>
-            <select
-              required
-              name="muscle"
-              id="muscle-input"
-              value={form.muscle}
-              onChange={handleChange}
+        </div>
+        <div className={styles.inputContainer}>
+          <label className={styles.label}  htmlFor="reps-input">Reps</label>
+          <input
+            required
+            type="number"
+            name="reps"
+            id="reps-input"
+            value={form.reps}
+            placeholder="Reps"
+            onChange={handleChange}
+          />
+        </div>
+        <div className={styles.inputContainer}>
+        <label className={styles.label}  htmlFor="equipment-input">Equipment</label>
+          <input
+            required
+            type="text"
+            name="equipment"
+            id="equipment-input"
+            value={form.equipment}
+            placeholder="Equipment"
+            onChange={handleChange}
+          />
+        </div>
+        <div className={styles.inputContainer}>
+          <label className={styles.label}  htmlFor="muscle-input">Muscle</label>
+          <select
+            required
+            name="muscle"
+            id="muscle-input"
+            value={form.muscle}
+            onChange={handleChange}
+            className={styles.select}
             >
-              <option value="upper back">Upper Back</option>
-              <option value="lower back">Lower Back</option>
-              <option value="chest">Chest</option>
-              <option value="abs">Abs</option>
-              <option value="arms">Arms</option>
-              <option value="legs">Legs</option>
-            </select>
-          </div>
-          <div className={styles.form}>
-            <label className={styles.newExeLabel}  htmlFor="equipment-input">Equipment</label>
-            <input
-              required
-              type="text"
-              name="equipment"
-              id="equipment-input"
-              value={form.equipment}
-              placeholder="Equipment"
-              onChange={handleChange}
-            />
-          </div>
-          <button className={styles.newExeBtn}type="submit">SUBMIT</button>
-        </form>
-      </div>
+            <option className={styles.option} value="upper back">Upper Back</option>
+            <option value="lower back">Lower Back</option>
+            <option value="chest">Chest</option>
+            <option value="abs">Abs</option>
+            <option value="arms">Arms</option>
+            <option value="legs">Legs</option>
+          </select>
+        </div>
+        <button className={styles.button}type="submit">SUBMIT</button>
+      </form>
     </main>
   )
 }
