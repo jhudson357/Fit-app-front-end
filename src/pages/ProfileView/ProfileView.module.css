@@ -30,3 +30,9 @@
   width: 75px;
   height: 50px;
 }
+
+.submitButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
