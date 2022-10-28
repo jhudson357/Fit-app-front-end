@@ -23,7 +23,6 @@ const ExerciseAdder = (props) => {
 
   return (  
     <>
-      <h3>Today's Exercises</h3>
       <form onSubmit={handleSubmit} onChange={handleChange}>
         <select name="id"  value={form.id} onChange={handleChange}>
         <option value='' defaultValue='' disabled>Select Exercise</option>
