@@ -36,7 +36,7 @@ Fit utilizes Edamam, and open-source API, and user inputs to provide a detailed 
   
 
 # Future Goals
-- Store meals and exercies in a calendar view under the profile.
+- Store meals and exercises in a calendar view under the profile.
 - Connect with friends to keep track of their fitness journey and share exercise and meal recommendations.
 - Link to meals directly from the profile view (Additional API call from the profile view)
 - Prevent repeat meals from being added to the database.
