@@ -16,25 +16,28 @@ const Goals = (props) => {
   if (!props.goals) return <h3>no goals yet</h3>
   return (  
     <>
-      <div className={styles.container}>
+      <div className={styles.allGoalContent}>
+        <h3>Goals</h3>
         <NewGoal 
           profile={props.profile} 
           setProfile={props.setProfile} 
           id={props.id} 
           handleAddGoal={props.handleAddGoal} 
         />
-        {props.goals.map((goal, idx) => (
-          <div key={idx} >
-            <GoalCard 
-              goal={goal} 
-              handleDeleteGoal={props.handleDeleteGoal} 
-              handleUpdateGoal={handleUpdateGoal}
-              id={props.id}
-              profile={props.profile} 
-              setProfile={props.setProfile}  
-            />
-          </div>
-        ))}
+        <div className={styles.container}>
+          {props.goals.map((goal, idx) => (
+            <div key={idx} >
+              <GoalCard 
+                goal={goal} 
+                handleDeleteGoal={props.handleDeleteGoal} 
+                handleUpdateGoal={handleUpdateGoal}
+                id={props.id}
+                profile={props.profile} 
+                setProfile={props.setProfile}  
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );

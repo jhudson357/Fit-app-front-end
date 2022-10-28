@@ -112,7 +112,6 @@ const ProfileView = (props) => {
   return (  
     <>
         <div>
-          <h3>Goals</h3>
           <Goals goals={profile.goals} profile={profile} setProfile={setProfile} id={id} handleDeleteGoal={handleDeleteGoal} handleAddGoal={handleAddGoal}/>
         </div>
 
