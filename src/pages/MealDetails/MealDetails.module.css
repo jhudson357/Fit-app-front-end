@@ -1,0 +1,77 @@
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+p {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+h3 {
+  margin-bottom: 0;
+}
+
+.allContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.detailsCard {
+  display: flex;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.212);
+  margin-top: 30px;
+  width: 800px;
+}
+
+.label {
+  text-align: center;
+}
+
+.content {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.cuisineCalories {
+  display: flex;
+  width: 100%;
+}
+
+.cuisineCalories > div {
+  width: 50%;
+  align-items: center;
+  display: flex;
+}
+
+.image {
+  display: flex;
+  align-items: center;
+}
+
+.mealImg {
+  border-radius: 10px;
+  margin: 10px;
+}
+
+.saveMealBtn {
+  width: 50%;
+  margin: 30px;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: var(--primary);
+  color: white;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.212);
+}
+
+
+
