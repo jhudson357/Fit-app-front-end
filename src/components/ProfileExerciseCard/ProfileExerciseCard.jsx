@@ -5,7 +5,7 @@ const ProfileExerciseCard = (props) => {
 
   return (
     <div className={styles.container}>
-      <Link to={`/exercises/${props.exercise._id}`}>
+      <Link to={`/exercises/${props.exercise._id}`} className={styles.exerName}>
         {props.exercise.name}
       </Link>
       <button className={styles.button} onClick={() => props.handleDeleteExercise(props.profileId, props.exercise._id)}>delete <i className="fa-solid fa-trash"></i></button>
