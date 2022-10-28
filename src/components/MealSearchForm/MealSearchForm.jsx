@@ -44,4 +44,6 @@ const MealSearchForm = (props) => {
   )
 }
 
+console.log('merge')
+
 export default MealSearchForm
