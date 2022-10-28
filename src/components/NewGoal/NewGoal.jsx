@@ -19,7 +19,7 @@ const NewGoal = (props) => {
   return ( 
     <>
       <form onSubmit={handleSubmit} className={styles.container}>
-      <h3 className={styles.h3}>Goals</h3> 
+        <h3 className={styles.h3}>Goals</h3> 
         <div>
           <textarea
             required
