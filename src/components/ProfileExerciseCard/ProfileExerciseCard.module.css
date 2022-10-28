@@ -4,7 +4,7 @@
   justify-content: first baseline;
   align-items: center;
   width: 200px;
-  height: 150px;
+  height: 116px;
   padding: 14px 21px;
   border-radius: 5px;
   border: 1px solid var(--border);
@@ -12,27 +12,4 @@
   box-shadow: -1px 5px 19px -5px rgba(0,0,0,0.25);
   -moz-box-shadow: -1px 5px 19px -5px rgba(0,0,0,0.25);
   -webkit-box-shadow: -1px 5px 19px -5px rgba(0,0,0,0.25);
-  font-size: small;
-}
-
-.container h4 {
-  margin-top: 0px;
-}
-
-.container h2 {
-  margin-bottom: 0px;
-}
-
-.editButton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 50px;
-  height: 50px;
-}
-
-.editButtons {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
 }
