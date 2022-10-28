@@ -4,7 +4,7 @@
   justify-content: first baseline;
   align-items: center;
   width: 200px;
-  height: 116px;
+  height: min-content;
   padding: 14px 21px;
   border-radius: 5px;
   border: 1px solid var(--border);
