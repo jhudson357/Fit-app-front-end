@@ -24,6 +24,7 @@ const ExerciseAdder = (props) => {
   return (  
     <>
       <form onSubmit={handleSubmit} onChange={handleChange}>
+        <h3>Add Exercises</h3>
         <select name="id"  value={form.id} onChange={handleChange}>
         <option value='' defaultValue='' disabled>Select Exercise</option>
           {props.exerciseNotInProfile.map((exercise) => 
