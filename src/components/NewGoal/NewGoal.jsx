@@ -16,24 +16,27 @@ const NewGoal = (props) => {
   }
 
 
-  return (  
-    <form onSubmit={handleSubmit} className={styles.container}>
-      <div>
-        <textarea
-          required
-          type="text"
-          name="content"
-          id="text-input"
-          value={form.content}
-          placeholder="Add a Goal"
-          onChange={handleChange}
-        />
-        <input type="date" name='date' value={form.date} onChange={handleChange}/>
-      </div>
+  return ( 
+    <>
+      <form onSubmit={handleSubmit} className={styles.container}>
+      <h3>Goals</h3> 
+        <div>
+          <textarea
+            required
+            type="text"
+            name="content"
+            id="text-input"
+            value={form.content}
+            placeholder="Add a Goal"
+            onChange={handleChange}
+          />
+          <input type="date" name='date' value={form.date} onChange={handleChange}/>
+        </div>
 
-      <button type="submit" className={styles.editButton}>submit <i className="fa-solid fa-share"></i></button>
-    </form>
-  );
+        <button type="submit" className={styles.editButton}>submit <i className="fa-solid fa-share"></i></button>
+      </form>
+    </>
+  )
 }
 
-export default NewGoal;
+export default NewGoal

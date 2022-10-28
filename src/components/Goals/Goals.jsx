@@ -17,7 +17,6 @@ const Goals = (props) => {
   return (  
     <>
       <div className={styles.allGoalContent}>
-        <h3>Goals</h3>
         <NewGoal 
           profile={props.profile} 
           setProfile={props.setProfile} 
