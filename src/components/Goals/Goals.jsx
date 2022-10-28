@@ -17,6 +17,12 @@ const Goals = (props) => {
   return (  
     <>
       <div className={styles.container}>
+        <NewGoal 
+          profile={props.profile} 
+          setProfile={props.setProfile} 
+          id={props.id} 
+          handleAddGoal={props.handleAddGoal} 
+        />
         {props.goals.map((goal, idx) => (
           <div key={idx} >
             <GoalCard 
@@ -29,12 +35,6 @@ const Goals = (props) => {
             />
           </div>
         ))}
-        <NewGoal 
-          profile={props.profile} 
-          setProfile={props.setProfile} 
-          id={props.id} 
-          handleAddGoal={props.handleAddGoal} 
-        />
       </div>
     </>
   );

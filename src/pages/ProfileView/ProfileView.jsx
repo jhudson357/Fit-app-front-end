@@ -112,7 +112,7 @@ const ProfileView = (props) => {
   return (  
     <>
         <div>
-          <h3>My goals:</h3>
+          <h3>Goals</h3>
           <Goals goals={profile.goals} profile={profile} setProfile={setProfile} id={id} handleDeleteGoal={handleDeleteGoal} handleAddGoal={handleAddGoal}/>
         </div>
 
@@ -139,6 +139,7 @@ const ProfileView = (props) => {
           }
         </div>
         
+        <h3>Add to Cookbook</h3>
         <div className={styles.container}>
           {profile.meals ?
           <form className={styles.exerciseForm} onSubmit={handleMealSubmit} onChange={handleMealChange}>
