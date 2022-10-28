@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import styles from './ExerciseAdder.module.css'
 
 const ExerciseAdder = (props) => {
   const [form, setForm] = useState(
@@ -31,7 +32,7 @@ const ExerciseAdder = (props) => {
             <option key={exercise._id}value={exercise._id}>{exercise.name}</option>
           )}
         </select>
-        <button disabled={isFormInvalid()} type="submit">submit</button>
+        <button className={styles.editButton}disabled={isFormInvalid()} type="submit">submit <i class="fa-solid fa-share"></i></button>
       </form>
     </>
   );

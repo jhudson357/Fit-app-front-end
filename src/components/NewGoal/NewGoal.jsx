@@ -31,7 +31,7 @@ const NewGoal = (props) => {
         <input type="date" name='date' value={form.date} onChange={handleChange}/>
       </div>
 
-      <button type="submit" className={styles.editButton}>Add Goal</button>
+      <button type="submit" className={styles.editButton}>submit <i class="fa-solid fa-share"></i></button>
     </form>
   );
 }
